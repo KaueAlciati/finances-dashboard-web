@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FinControl — Crie sua conta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container nav">
+      <a class="brand" href="index.html" aria-label="FinControl - Início">
+        <span class="logo" aria-hidden="true"></span>
+        <span class="brand-name">FinControl</span>
+      </a>
+      <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+      <nav class="menu" aria-label="Menu principal">
+        <a href="index.html#features">Features</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="index.html#support">Support</a>
+        <a class="btn ghost" href="login.html">Entrar</a>
+        <a class="btn primary" href="signup.html">Criar conta</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Auth -->
+  <main class="auth-wrapper">
+    <div class="container">
+      <section class="auth-card" aria-labelledby="signup-title">
+        <h1 id="signup-title" class="auth-title">Crie sua conta</h1>
+        <p class="auth-sub">
+          Or <a class="link" href="login.html">log in to your existing account</a>
+        </p>
+
+        <form id="signupForm" class="auth-form" novalidate>
+          <label class="field">
+            <span class="field-label">Nome completo</span>
+            <input type="text" name="name" placeholder="Nome completo" required />
+          </label>
+
+          <label class="field">
+            <span class="field-label">E-mail</span>
+            <input type="email" name="email" placeholder="E-mail" required />
+          </label>
+
+          <label class="field">
+            <div class="field-head">
+              <span class="field-label">Senha</span>
+              <a class="link small" href="#" id="openForgot">Esqueceu sua senha?</a>
+            </div>
+            <div class="pw">
+              <input type="password" name="password" placeholder="Senha" minlength="6" required />
+              <button type="button" class="pw-toggle" aria-label="Mostrar senha">👁️</button>
+            </div>
+          </label>
+
+          <button type="submit" class="btn primary block">Criar conta</button>
+          <p class="form-msg" id="signupMsg" role="alert" aria-live="polite"></p>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <!-- modal simples de “forgot password” (mock) -->
+  <dialog id="forgotModal" class="modal">
+    <form method="dialog" class="modal-content">
+      <h3>Reset your password</h3>
+      <p>Enter your email and we’ll send reset instructions.</p>
+      <input type="email" id="forgotEmail" placeholder="your@email.com" required />
+      <div class="modal-actions">
+        <button class="btn ghost" value="cancel">Cancelar</button>
+        <button class="btn primary" id="sendReset" value="confirm">Send</button>
+      </div>
+      <p class="form-msg" id="forgotMsg" aria-live="polite"></p>
+    </form>
+  </dialog>
+
+  <script src="/js/app-auth.js"></script>
+</body>
+</html>
