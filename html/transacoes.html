@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FinControl — Transações</title>
+  <meta name="description" content="Gerencie receitas e despesas: adicionar, editar, excluir e filtrar transações." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/transacoes.css" />
+</head>
+<body class="tx-body">
+  <!-- Topbar simples com navegação -->
+  <header class="tx-topbar">
+    <div class="container tx-top">
+      <a class="brand" href="dashboard.html" aria-label="FinControl - Dashboard">
+        <span class="logo" aria-hidden="true"></span>
+        <span class="brand-name">FinControl</span>
+      </a>
+      <nav class="tx-nav">
+        <a href="dashboard.html">Dashboard</a>
+        <a class="active" href="transacoes.html">Transações</a>
+        <a href="categorias.html">Orçamentos</a>
+        <a href="relatorios.html">Relatórios</a>
+      </nav>
+      <div class="user-mini" id="userMini">
+        <span id="miniNome">…</span>
+        <button id="miniSair" class="btn ghost sm">Sair</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container tx-main">
+    <div class="tx-head">
+      <h1>Transações</h1>
+      <button id="btnAdd" class="btn primary">+ Adicionar Transação</button>
+    </div>
+
+    <!-- Filtros -->
+    <section class="filters">
+      <div class="f-row">
+        <label>
+          <span class="f-label">Tipo</span>
+          <select id="fTipo">
+            <option value="">Todos</option>
+            <option value="receita">Receita</option>
+            <option value="despesa">Despesa</option>
+          </select>
+        </label>
+
+        <label>
+          <span class="f-label">Categoria</span>
+          <select id="fCategoria">
+            <option value="">Todos</option>
+          </select>
+        </label>
+
+        <label>
+          <span class="f-label">From</span>
+          <input type="date" id="fDe" />
+        </label>
+
+        <label>
+          <span class="f-label">To</span>
+          <input type="date" id="fAte" />
+        </label>
+
+        <div class="f-actions">
+          <button id="btnFiltrar" class="btn ghost">Filtrar</button>
+          <button id="btnLimpar" class="btn ghost">Limpar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tabela -->
+    <section class="table-wrap">
+      <table class="tx-table" aria-label="Lista de transações">
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Categoria</th>
+            <th>Descrição</th>
+            <th class="col-right">Valor</th>
+            <th class="col-actions">Ações</th>
+          </tr>
+        </thead>
+        <tbody id="tbBody">
+          <!-- linhas via JS -->
+        </tbody>
+      </table>
+
+      <div id="emptyState" class="empty" hidden>
+        No transactions yet. Click <strong>“Adicionar Transação”</strong> to create your first one.
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal Add/Editar -->
+  <dialog id="txModal" class="modal">
+    <form id="txForm" method="dialog" class="modal-card">
+      <h3 id="txTitle">Adicionar Transação</h3>
+
+      <div class="grid2">
+        <label class="field">
+          <span class="field-label">Tipo</span>
+          <select name="tipo" id="mTipo" required>
+            <option value="receita">Receita</option>
+            <option value="despesa">Despesa</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span class="field-label">Data</span>
+          <input type="date" name="data" id="mData" required />
+        </label>
+      </div>
+
+      <div class="grid2">
+        <label class="field">
+          <span class="field-label">Categoria</span>
+          <select name="categoria" id="mCategoria" required></select>
+        </label>
+
+        <label class="field">
+          <span class="field-label">Valor</span>
+          <input type="number" step="0.01" min="0" name="valor" id="mValor" placeholder="0.00" required />
+        </label>
+      </div>
+
+      <label class="field">
+        <span class="field-label">Descrição</span>
+        <input type="text" name="descricao" id="mDesc" placeholder="e.g., Electricity bill" />
+      </label>
+
+      <div class="modal-actions">
+        <button class="btn ghost" value="cancel">Cancelar</button>
+        <button id="btnSalvar" class="btn primary" value="confirm">Salvar</button>
+      </div>
+
+      <input type="hidden" id="mId" />
+      <p id="formMsg" class="form-msg" aria-live="polite"></p>
+    </form>
+  </dialog>
+
+  <script src="../js/transacoes.js"></script>
+</body>
+</html>
