@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FinControl — Orçamentos</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="orcamentos.css" />
+</head>
+<body>
+  <!-- TOPO -->
+  <header class="appbar">
+    <a class="brand" href="dashboard.html">
+      <span class="logo"></span>
+      <strong>FinControl</strong>
+    </a>
+
+    <!-- sequência correta -->
+    <nav class="tabs">
+      <a href="dashboard.html">Visão Geral</a>
+      <a href="transacoes.html">Transações</a>
+      <a href="relatorios.html">Relatório</a>
+      <a href="orcamentos.html" class="active">Orçamentos</a>
+      <a href="metas.html">Metas</a>
+    </nav>
+
+    <a class="btn-out" href="index.html">Sair</a>
+  </header>
+
+  <!-- CONTEÚDO -->
+  <main class="container">
+    <header class="page-head">
+      <div>
+        <h1>Orçamentos</h1>
+        <p class="muted">Gerencie seus limites de gastos mensais de forma simples e visual.</p>
+      </div>
+      <button id="btn-new" class="btn btn-green"><i class="ri-add-line"></i> Novo orçamento</button>
+    </header>
+
+    <!-- GRID DE CARDS -->
+    <section id="budget-grid" class="grid"></section>
+  </main>
+
+  <!-- MODAL -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-card">
+      <header>
+        <h3>Novo orçamento</h3>
+        <button id="close-modal" class="icon-btn"><i class="ri-close-line"></i></button>
+      </header>
+
+      <form id="form-budget">
+        <label>Categoria</label>
+        <select id="b-cat" required></select>
+
+        <label>Limite (R$)</label>
+        <input id="b-limit" type="number" step="0.01" min="0.01" required placeholder="Ex: 800.00" />
+
+        <div class="modal-actions">
+          <button type="button" class="btn" id="cancel">Cancelar</button>
+          <button type="submit" class="btn btn-green">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="orcamentos.js"></script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FinControl — Entrar</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+  <main class="page">
+    <!-- Marca -->
+    <header class="brand">
+      <span class="logo" aria-hidden="true"></span>
+      <h1 class="brand-name">FinControl</h1>
+    </header>
+
+    <!-- Card -->
+    <section class="card" aria-labelledby="titulo">
+      <h2 id="titulo" class="title">Entrar na sua conta</h2>
+      <p class="subtitle">Acesse seus dashboards e acompanhe suas finanças.</p>
+
+      <!-- Alertas criados dinamicamente -->
+      <form id="form-login" novalidate>
+        <!-- E-mail -->
+        <label for="email">E-mail</label>
+        <div class="input">
+          <i class="ri-mail-line" aria-hidden="true"></i>
+          <input id="email" name="email" type="email" placeholder="seuemail@exemplo.com" required />
+        </div>
+        <small id="email-err" class="error"></small>
+
+        <!-- Senha -->
+        <label for="senha">Senha</label>
+        <div class="input">
+          <i class="ri-lock-2-line" aria-hidden="true"></i>
+          <input id="senha" name="password" type="password" placeholder="Sua senha" required minlength="6" />
+          <button type="button" class="icon-btn" id="togglePass" aria-label="Mostrar senha">
+            <i class="ri-eye-line"></i>
+          </button>
+        </div>
+        <small id="senha-err" class="error"></small>
+
+        <div class="row between">
+          <label class="check">
+            <input type="checkbox" id="remember" />
+            <span>Lembrar de mim</span>
+          </label>
+          <a href="forgot.html" id="forgot-link" class="link">Esqueceu a senha?</a>
+        </div>
+
+        <button id="submit" class="btn primary" type="submit">
+          <span class="btn-label">Entrar</span>
+          <span class="spinner" aria-hidden="true"></span>
+        </button>
+
+        <p class="switch">Não tem conta? <a href="signup.html" id="create-account" class="link">Criar conta</a></p>
+      </form>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="footnote">
+      <p><i class="ri-shield-check-line"></i> <strong>Dica:</strong> Nunca compartilhe sua senha com ninguém.</p>
+      <a href="#" class="link">Política de Privacidade</a>
+    </footer>
+  </main>
+
+  <script>
+    // alternar exibição da senha
+    const senhaInput = document.getElementById("senha");
+    const togglePass = document.getElementById("togglePass");
+    togglePass.addEventListener("click", () => {
+      const isPassword = senhaInput.type === "password";
+      senhaInput.type = isPassword ? "text" : "password";
+      togglePass.innerHTML = isPassword
+        ? '<i class="ri-eye-off-line"></i>'
+        : '<i class="ri-eye-line"></i>';
+    });
+
+    // validação e login
+    const form = document.getElementById("form-login");
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById("email");
+      const senha = document.getElementById("senha");
+      const emailErr = document.getElementById("email-err");
+      const senhaErr = document.getElementById("senha-err");
+
+      emailErr.textContent = "";
+      senhaErr.textContent = "";
+
+      if (!email.value.trim()) {
+        emailErr.textContent = "Informe seu e-mail.";
+        return;
+      }
+      if (!senha.value.trim()) {
+        senhaErr.textContent = "Digite sua senha.";
+        return;
+      }
+
+      // login fake
+      localStorage.setItem("fincontrol_user", email.value);
+      window.location.href = "dashboard.html";
+    });
+
+    // redirecionamentos extras (backup se clicar sem JS inline)
+    document.getElementById("forgot-link").addEventListener("click", (e) => {
+      e.preventDefault();
+      window.location.href = "forgot.html";
+    });
+    document.getElementById("create-account").addEventListener("click", (e) => {
+      e.preventDefault();
+      window.location.href = "signup.html";
+    });
+  </script>
+</body>
+</html>

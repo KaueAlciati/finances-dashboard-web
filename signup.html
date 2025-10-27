@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FinControl — Criar conta</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="signup.css" />
+</head>
+<body>
+  <main class="page">
+    <!-- Marca -->
+    <header class="brand">
+      <span class="logo" aria-hidden="true"></span>
+      <h1 class="brand-name">FinControl</h1>
+    </header>
+
+    <!-- Card -->
+    <section class="card" aria-labelledby="titulo">
+      <h2 id="titulo" class="title">Criar sua conta</h2>
+      <p class="subtitle">Comece grátis e organize suas finanças em minutos.</p>
+
+      <!-- (alerta é criado dinamicamente pelo JS quando necessário) -->
+
+      <form id="form-signup" novalidate>
+        <!-- Nome -->
+        <label for="nome">Nome completo</label>
+        <div class="input">
+          <i class="ri-user-line" aria-hidden="true"></i>
+          <input id="nome" name="name" type="text" placeholder="Seu nome completo" required />
+        </div>
+        <small id="nome-err" class="error"></small>
+
+        <!-- E-mail -->
+        <label for="email">E-mail</label>
+        <div class="input">
+          <i class="ri-mail-line" aria-hidden="true"></i>
+          <input id="email" name="email" type="email" placeholder="seuemail@exemplo.com" required />
+        </div>
+        <small id="email-err" class="error"></small>
+
+        <!-- Senha -->
+        <label for="senha">Senha</label>
+        <div class="input">
+          <i class="ri-lock-2-line" aria-hidden="true"></i>
+          <input id="senha" name="password" type="password" placeholder="Crie uma senha forte" required minlength="8" />
+          <button type="button" class="icon-btn" id="togglePass" aria-label="Mostrar senha">
+            <i class="ri-eye-line"></i>
+          </button>
+        </div>
+        <div class="strength">
+          <span class="label">Força da senha</span>
+          <div class="bars">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span>
+          </div>
+          <span id="strength-text" class="strength-text">—</span>
+        </div>
+        <small id="senha-err" class="error"></small>
+
+        <!-- Confirmar -->
+        <label for="confirm">Confirmar senha</label>
+        <div class="input">
+          <i class="ri-check-double-line" aria-hidden="true"></i>
+          <input id="confirm" name="confirm" type="password" placeholder="Repita sua senha" required minlength="8" />
+        </div>
+        <small id="confirm-err" class="error"></small>
+
+        <!-- Termos -->
+        <label class="check terms">
+          <input type="checkbox" id="terms" />
+          <span>Concordo com os <a href="#" class="link">Termos de Uso</a> e a <a href="#" class="link">Política de Privacidade</a>.</span>
+        </label>
+        <small id="terms-err" class="error"></small>
+
+        <button id="submit" class="btn primary" type="submit">
+          <span class="btn-label">Criar conta</span>
+          <span class="spinner" aria-hidden="true"></span>
+        </button>
+
+        <p class="switch">Já tem conta? <a href="/login.html" class="link">Entrar</a></p>
+      </form>
+    </section>
+  </main>
+
+  <script src="signup.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FinControl — Recuperar senha</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="forgot.css" />
+</head>
+<body>
+  <main class="page">
+    <header class="brand">
+      <span class="logo" aria-hidden="true"></span>
+      <h1 class="brand-name">FinControl</h1>
+    </header>
+
+    <section class="card" aria-labelledby="titulo">
+      <h2 id="titulo" class="title">Recuperar senha</h2>
+      <p class="subtitle"><a class="link" href="/login.html">Voltar para o login</a></p>
+
+      <!-- alerta dinâmico via JS -->
+
+      <form id="form-forgot" novalidate>
+        <label for="email">E-mail</label>
+        <div class="input">
+          <input id="email" type="email" placeholder="seuemail@exemplo.com" required />
+        </div>
+        <small id="email-err" class="error"></small>
+
+        <button id="submit" class="btn primary" type="submit">
+          <span class="btn-label">Enviar link</span>
+          <span class="spinner" aria-hidden="true"></span>
+        </button>
+
+        <p class="hint">
+          Se o e-mail existir, você receberá um link para redefinir sua senha.
+        </p>
+      </form>
+    </section>
+  </main>
+
+  <script src="forgot.js"></script>
+</body>
+</html>

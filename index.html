@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FinControl — Domine suas finanças com inteligência</title>
+
+  <!-- Fonte + Ícones -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container nav">
+      <a href="#inicio" class="brand" aria-label="FinControl — Início">
+        <span class="logo" aria-hidden="true"></span>
+        <span class="brand-name">FinControl</span>
+      </a>
+
+      <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+
+      <nav class="menu" aria-label="Menu principal">
+        <a href="#inicio">Início</a>
+        <a href="#beneficios">Funcionalidades</a>
+        <a href="#planos">Planos</a>
+        <a href="#contato">Contato</a>
+        <!-- botão Entrar -> login.html -->
+        <a href="login.html" class="btn small" id="btn-enter-nav">Entrar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <!-- Hero -->
+    <section class="hero section">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <h1>Domine suas finanças <br />com <span class="highlight">inteligência</span>.</h1>
+          <p class="subtitle">
+            Um sistema de controle financeiro inteligente para você organizar
+            receitas e despesas, acompanhar dashboards e receber relatórios automáticos.
+          </p>
+          <div class="hero-actions">
+            <!-- Começar Agora -> login.html -->
+            <a href="login.html" class="btn">Começar Agora</a>
+            <!-- Ver Demo -> dashboard.html (demo visual) -->
+            <a href="dashboard.html" class="btn ghost">Ver Demo</a>
+          </div>
+        </div>
+
+        <!-- Mock do dashboard (placeholder) -->
+        <div class="hero-media" aria-hidden="true">
+          <div class="ui-window">
+            <div class="ui-top"></div>
+            <div class="ui-body">
+              <div class="ui-chart bars"></div>
+              <div class="ui-chart line"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefícios -->
+    <section id="beneficios" class="section">
+      <div class="container">
+        <h2 class="title center">Benefícios</h2>
+        <p class="text center max">O FinControl oferece uma solução completa para você ter controle total das suas finanças.</p>
+
+        <div class="cards">
+          <article class="card">
+            <i class="ri-wallet-3-line"></i>
+            <h3>Controle Total de Gastos</h3>
+            <p>Centralize todas as despesas com categorias e análises detalhadas.</p>
+          </article>
+
+          <article class="card">
+            <i class="ri-bar-chart-2-line"></i>
+            <h3>Relatórios Inteligentes</h3>
+            <p>Relatórios claros para entender seus hábitos e decidir com segurança.</p>
+          </article>
+
+          <article class="card">
+            <i class="ri-robot-2-line"></i>
+            <h3>Integração com Bots</h3>
+            <p>Receba alertas e lance despesas via WhatsApp/Telegram (em breve).</p>
+          </article>
+
+          <article class="card">
+            <i class="ri-magic-line"></i>
+            <h3>Simples e Intuitivo</h3>
+            <p>Interface moderna e fácil, focada no que importa: seus resultados.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recursos Avançados -->
+    <section id="features" class="section">
+      <div class="container">
+        <h2 class="title center">Recursos Avançados</h2>
+        <p class="text center max">Conheça as ferramentas que vão elevar seu controle financeiro.</p>
+
+        <div class="features">
+          <div class="feature">
+            <div class="feat-media gradient a"></div>
+            <div class="feat-text">
+              <h3>Gráficos em tempo real</h3>
+              <p>Visualize dados financeiros com gráficos dinâmicos e interativos.</p>
+            </div>
+          </div>
+
+          <div class="feature">
+            <div class="feat-media gradient b"></div>
+            <div class="feat-text">
+              <h3>Orçamentos automáticos</h3>
+              <p>Crie e acompanhe orçamentos que te ajudam a economizar todo mês.</p>
+            </div>
+          </div>
+
+          <div class="feature">
+            <div class="feat-media gradient c"></div>
+            <div class="feat-text">
+              <h3>Metas mensais</h3>
+              <p>Defina objetivos e acompanhe o progresso com indicadores visuais.</p>
+            </div>
+          </div>
+
+          <div class="feature">
+            <div class="feat-media gradient d"></div>
+            <div class="feat-text">
+              <h3>Histórico de transações</h3>
+              <p>Acesse todo o seu histórico com filtros por período e categoria.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Planos -->
+    <section id="planos" class="section">
+      <div class="container">
+        <h2 class="title center">Escolha seu Plano</h2>
+        <p class="text center max">Comece grátis e evolua quando precisar. Sem cartão de crédito.</p>
+
+        <div class="pricing">
+          <article class="price-card">
+            <h3>Plano Free</h3>
+            <p class="price"><span>R$</span>0<span class="period">/mês</span></p>
+            <ul class="list">
+              <li><i class="ri-check-line"></i> Até 100 transações</li>
+              <li><i class="ri-check-line"></i> Relatórios básicos</li>
+              <li><i class="ri-check-line"></i> Suporte por e-mail</li>
+            </ul>
+            <!-- Começar -> login.html -->
+            <a href="login.html" class="btn alt">Começar</a>
+          </article>
+
+          <article class="price-card highlight">
+            <div class="badge">Mais popular</div>
+            <h3>Plano Premium</h3>
+            <p class="price"><span>R$</span>19,90<span class="period">/mês</span></p>
+            <ul class="list">
+              <li><i class="ri-check-line"></i> Transações ilimitadas</li>
+              <li><i class="ri-check-line"></i> Relatórios avançados</li>
+              <li><i class="ri-check-line"></i> Suporte prioritário</li>
+              <li><i class="ri-check-line"></i> Integração com bot</li>
+            </ul>
+            <!-- Assinar -> login.html -->
+            <a href="login.html" class="btn">Assinar</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Depoimentos -->
+    <section class="section">
+      <div class="container">
+        <h2 class="title center">O que nossos usuários dizem</h2>
+
+        <div class="testimonials">
+          <article class="t-card">
+            <div class="avatar circle">JD</div>
+            <h4>João Dias</h4>
+            <p class="role">CEO, TechCorp</p>
+            <p class="t-text">“O FinControl revolucionou a forma como gerimos as finanças. Simples, poderoso e com ótimo suporte.”</p>
+          </article>
+
+          <article class="t-card">
+            <div class="avatar circle">JS</div>
+            <h4>Julia Santos</h4>
+            <p class="role">Freelancer</p>
+            <p class="t-text">“Como freelancer, era um caos separar receitas e despesas. O FinControl tornou tudo leve e intuitivo.”</p>
+          </article>
+
+          <article class="t-card">
+            <div class="avatar circle">MJ</div>
+            <h4>Marcos José</h4>
+            <p class="role">Pequeno Empreendedor</p>
+            <p class="t-text">“Os relatórios avançados mudaram o jogo. Agora decido com base em dados, não em achismos.”</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Rodapé -->
+  <footer id="contato" class="footer">
+    <div class="container foot-grid">
+      <div class="foot-brand">
+        <a href="#inicio" class="brand">
+          <span class="logo"></span><span class="brand-name">FinControl</span>
+        </a>
+        <p class="foot-text">O sistema inteligente de controle financeiro para te ajudar a gerir seu dinheiro.</p>
+      </div>
+
+      <nav class="foot-links">
+        <h5>Links</h5>
+        <a href="#inicio">Início</a>
+        <a href="#beneficios">Funcionalidades</a>
+        <a href="#planos">Planos</a>
+        <a href="#contato">Contato</a>
+      </nav>
+
+      <div class="foot-social">
+        <h5>Siga-nos</h5>
+        <div class="socials">
+          <a href="#" aria-label="Twitter"><i class="ri-twitter-x-line"></i></a>
+          <a href="#" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="ri-linkedin-line"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="copy">
+      <div class="container">
+        <span>© 2024 FinControl. Todos os direitos reservados.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Botão flutuante -> demo -->
+  <a href="dashboard.html" class="fab" aria-label="Testar Demo">
+    <i class="ri-play-circle-line"></i>
+    <span>Testar Demo</span>
+  </a>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FinControl — Redefinir senha</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="reset.css" />
+</head>
+<body>
+  <main class="page">
+    <header class="brand">
+      <span class="logo" aria-hidden="true"></span>
+      <h1 class="brand-name">FinControl</h1>
+    </header>
+
+    <section class="card" aria-labelledby="titulo">
+      <h2 id="titulo" class="title">Redefinir senha</h2>
+
+      <!-- alerta dinâmico via JS -->
+
+      <form id="form-reset" novalidate>
+        <label for="senha">Nova senha</label>
+        <div class="input">
+          <i class="ri-lock-2-line" aria-hidden="true"></i>
+          <input id="senha" type="password" placeholder="Digite sua nova senha" required minlength="8" />
+          <button type="button" class="icon-btn" id="toggle1" aria-label="Mostrar senha"><i class="ri-eye-line"></i></button>
+        </div>
+        <div class="strength">
+          <div class="bar"><span></span></div>
+          <span id="strength-text" class="s-label">—</span>
+        </div>
+        <small id="senha-err" class="error"></small>
+
+        <label for="confirm">Confirmar senha</label>
+        <div class="input">
+          <i class="ri-check-double-line" aria-hidden="true"></i>
+          <input id="confirm" type="password" placeholder="Confirme sua nova senha" required minlength="8" />
+          <button type="button" class="icon-btn" id="toggle2" aria-label="Mostrar senha"><i class="ri-eye-line"></i></button>
+        </div>
+        <small id="confirm-err" class="error"></small>
+
+        <button id="submit" class="btn primary" type="submit">
+          <span class="btn-label">Redefinir senha</span>
+          <span class="spinner" aria-hidden="true"></span>
+        </button>
+      </form>
+    </section>
+  </main>
+
+  <script src="reset.js"></script>
+</body>
+</html>

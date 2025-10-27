@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FinControl — Dashboard</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="logo"></span>
+      <strong>FinControl</strong>
+    </div>
+
+    <!-- Navegação por página -->
+    <nav class="side-menu">
+      <a href="dashboard.html"  class="nav-item active"><i class="ri-dashboard-line"></i><span>Dashboard</span></a>
+      <a href="transacoes.html" class="nav-item"><i class="ri-exchange-dollar-line"></i><span>Transações</span></a>
+      <a href="relatorios.html" class="nav-item"><i class="ri-bar-chart-2-line"></i><span>Relatório</span></a>
+      <a href="orcamentos.html" class="nav-item"><i class="ri-wallet-3-line"></i><span>Orçamentos</span></a>
+      <a href="metas.html"      class="nav-item"><i class="ri-flag-2-line"></i><span>Metas</span></a>
+
+      <!-- Configurações: abre uma VIEW local (sem trocar de página) -->
+      <button type="button" id="open-settings" class="nav-item as-button">
+        <i class="ri-settings-3-line"></i><span>Configurações</span>
+      </button>
+    </nav>
+
+    <div class="profile">
+      <img id="profile-avatar" src="" alt="Avatar" />
+      <div>
+        <div id="profile-name">Usuário</div>
+        <div id="profile-email" class="muted">email@exemplo.com</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- CONTEÚDO -->
+  <main class="main">
+    <header class="topbar">
+      <h1 id="page-title">Dashboard</h1>
+      <div class="top-actions">
+        <a class="btn" id="btn-logout" href="index.html">Sair</a>
+        <button id="btn-new" class="btn btn-green"><i class="ri-add-line"></i> Nova transação</button>
+      </div>
+    </header>
+
+    <!-- VIEW: DASHBOARD -->
+    <section class="container" id="dashboard-view">
+      <!-- Cards -->
+      <div class="cards">
+        <div class="card"><p class="muted">Saldo atual</p><h2 id="balance">R$ 0,00</h2></div>
+        <div class="card"><p class="muted">Receitas do mês</p><h2 id="income">R$ 0,00</h2></div>
+        <div class="card"><p class="muted">Despesas do mês</p><h2 id="expense">R$ 0,00</h2></div>
+        <div class="card"><p class="muted">Transações totais</p><h2 id="count">0</h2></div>
+      </div>
+
+      <!-- Gráficos -->
+      <div class="charts-row">
+        <div class="chart-card">
+          <h3>Evolução Mensal</h3>
+          <div class="chart-wrapper"><canvas id="lineChart"></canvas></div>
+        </div>
+
+        <div class="chart-card">
+          <h3>Gasto por Categoria</h3>
+          <div class="chart-wrapper"><canvas id="pieChart"></canvas></div>
+        </div>
+      </div>
+
+      <!-- Últimas transações -->
+      <div class="panel full">
+        <div class="panel-head">
+          <h3>Últimas Transações</h3>
+          <a href="transacoes.html" id="view-all" class="link-cta">Ver todas</a>
+        </div>
+        <table class="tx-table">
+          <thead>
+            <tr><th>Data</th><th>Descrição</th><th>Categoria</th><th class="right">Valor</th><th></th></tr>
+          </thead>
+          <tbody id="tx-body"></tbody>
+        </table>
+      </div>
+
+      <!-- Notificações -->
+      <div class="panel small">
+        <h3>Notificações Inteligentes</h3>
+        <div id="notifications"></div>
+      </div>
+    </section>
+
+    <!-- VIEW: CONFIGURAÇÕES (aparece só quando clicar no botão da sidebar) -->
+    <section class="container hidden" id="settings-view">
+      <h1 class="settings-title">Configurações</h1>
+
+      <div class="settings-grid">
+        <!-- Coluna Esquerda -->
+        <div class="settings-col">
+          <!-- Perfil -->
+          <div class="set-card">
+            <div class="set-card-head">
+              <div class="avatar">AS</div>
+              <div>
+                <h3>Perfil</h3>
+                <p class="muted">Atualize suas informações de perfil.</p>
+              </div>
+            </div>
+
+            <label>Nome</label>
+            <input id="setting-name" placeholder="Seu nome" />
+
+            <label style="margin-top:10px">E-mail</label>
+            <input id="setting-email" placeholder="seuemail@exemplo.com" />
+
+            <div class="set-actions">
+              <button id="save-profile" class="btn btn-green">Salvar Alterações</button>
+            </div>
+          </div>
+
+          <!-- Notificações -->
+          <div class="set-card">
+            <h3>Notificações</h3>
+            <p class="muted">Gerencie suas preferências de notificação.</p>
+
+            <div class="switch-row">
+              <span>Alertas por e-mail para contas futuras</span>
+              <label class="switch">
+                <input id="sw-email" type="checkbox" checked />
+                <span></span>
+              </label>
+            </div>
+
+            <div class="switch-row">
+              <span>Notificações push para grandes transações</span>
+              <label class="switch">
+                <input id="sw-push" type="checkbox" />
+                <span></span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Aparência -->
+          <div class="set-card">
+            <h3>Aparência</h3>
+            <p class="muted">Escolha entre o tema claro ou escuro.</p>
+            <div class="row gap">
+              <button type="button" id="theme-light" class="btn pill active">Claro</button>
+              <button type="button" id="theme-dark"  class="btn pill">Escuro</button>
+            </div>
+          </div>
+
+          <!-- Moeda e Idioma -->
+          <div class="set-card">
+            <h3>Moeda e idioma</h3>
+            <p class="muted">Defina sua moeda e idioma.</p>
+
+            <label>Moeda</label>
+            <select id="sel-currency">
+              <option value="BRL">BRL (R$)</option>
+              <option value="USD">USD ($)</option>
+              <option value="EUR">EUR (€)</option>
+            </select>
+
+            <label style="margin-top:10px">Idioma</label>
+            <select id="sel-lang">
+              <option value="pt-BR">Português</option>
+              <option value="en-US">Inglês</option>
+              <option value="es-ES">Espanhol</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Coluna Direita -->
+        <div class="settings-col">
+          <div class="set-card side-card">
+            <div class="side-head">
+              <h3>Integração com Bot</h3>
+              <div class="status"><span class="dot"></span> Status: <b>Conectado</b></div>
+            </div>
+
+            <label>Comandos Automáticos</label>
+            <textarea rows="6" id="bot-commands" placeholder="mercado 100&#10;salario 2500&#10;aluguel 1200"></textarea>
+
+            <div class="row gap">
+              <button id="btn-generate-token" class="btn btn-green">Gerar token de conexão</button>
+            </div>
+
+            <label style="margin-top:10px">Token</label>
+            <div class="token-box">
+              <input id="bot-token" type="text" readonly value="••••••••••••••••••••••" />
+              <button id="copy-token" class="icon-btn" title="Copiar"><i class="ri-clipboard-line"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- MODAL NOVA TRANSAÇÃO -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-card">
+      <header>
+        <h3>Nova transação</h3>
+        <button id="close-modal" class="icon-btn"><i class="ri-close-line"></i></button>
+      </header>
+
+      <form id="form-tx">
+        <label>Data</label>
+        <input type="date" id="tx-date" required />
+
+        <label>Descrição</label>
+        <input id="tx-desc" placeholder="Ex.: Mercado, Salário..." required />
+
+        <label>Categoria</label>
+        <select id="tx-cat"></select>
+
+        <label>Tipo</label>
+        <select id="tx-type">
+          <option value="expense">Despesa</option>
+          <option value="income">Receita</option>
+        </select>
+
+        <label>Valor (R$)</label>
+        <input id="tx-value" type="number" step="0.01" placeholder="0.00" required />
+
+        <div class="modal-actions">
+          <button type="button" id="cancel" class="btn">Cancelar</button>
+          <button type="submit" class="btn btn-green">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>

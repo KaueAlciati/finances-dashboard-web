@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FinControl — Relatório</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+  <link rel="stylesheet" href="relatorios.css" />
+</head>
+<body>
+  <!-- APPBAR -->
+  <header class="appbar">
+    <a class="brand" href="dashboard.html">
+      <span class="logo"></span>
+      <strong>FinControl</strong>
+    </a>
+
+    <!-- ORDEM FIXA -->
+    <nav class="tabs">
+      <a href="dashboard.html">Visão Geral</a>
+      <a href="transacoes.html">Transações</a>
+      <a href="relatorios.html" class="active">Relatório</a>
+      <a href="orcamentos.html">Orçamentos</a>
+      <a href="metas.html" >Metas</a>
+    </nav>
+
+    <a class="btn-out" href="index.html">Sair</a>
+  </header>
+
+  <main class="container">
+    <header class="page-head">
+      <div>
+        <h1>Relatórios</h1>
+        <p class="muted">Acompanhe seus resultados por período, tipo e categoria.</p>
+      </div>
+
+      <div class="filters">
+        <select id="f-period">
+          <option value="this-month">Este mês</option>
+          <option value="last-month">Mês passado</option>
+          <option value="30d">Últimos 30 dias</option>
+          <option value="ytd">Ano atual</option>
+          <option value="all">Todos</option>
+        </select>
+
+        <div class="date-pair">
+          <input type="date" id="f-from" />
+          <span>—</span>
+          <input type="date" id="f-to" />
+        </div>
+
+        <select id="f-type">
+          <option value="all">Receitas e Despesas</option>
+          <option value="income">Somente Receitas</option>
+          <option value="expense">Somente Despesas</option>
+        </select>
+
+        <select id="f-category">
+          <option value="all">Todas as categorias</option>
+        </select>
+
+        <button id="btn-export" class="btn">Exportar CSV</button>
+      </div>
+    </header>
+
+    <!-- CARDS RESUMO -->
+    <section class="cards">
+      <div class="card">
+        <p class="muted">Receitas no período</p>
+        <h2 id="sum-income">R$ 0,00</h2>
+      </div>
+      <div class="card">
+        <p class="muted">Despesas no período</p>
+        <h2 id="sum-expense">R$ 0,00</h2>
+      </div>
+      <div class="card">
+        <p class="muted">Saldo do período</p>
+        <h2 id="sum-balance">R$ 0,00</h2>
+      </div>
+    </section>
+
+    <!-- GRÁFICOS -->
+    <section class="charts-row">
+      <div class="chart-card">
+        <h3>Fluxo de caixa (diário)</h3>
+        <div class="chart-wrapper">
+          <canvas id="lineChart"></canvas>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <h3>Participação por categoria</h3>
+        <div class="chart-wrapper">
+          <canvas id="pieChart"></canvas>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <h3>Top categorias (valor acumulado)</h3>
+        <div class="chart-wrapper">
+          <canvas id="barChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- TABELA RESUMO -->
+    <section class="panel">
+      <div class="panel-head">
+        <h3>Resumo por categoria</h3>
+      </div>
+      <table class="tx-table">
+        <thead>
+          <tr>
+            <th>Categoria</th>
+            <th class="right">Valor</th>
+            <th class="right">%</th>
+          </tr>
+        </thead>
+        <tbody id="sum-body"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="relatorios.js"></script>
+</body>
+</html>

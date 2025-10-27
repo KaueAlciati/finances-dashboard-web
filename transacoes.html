@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FinControl — Transações</title>
+
+  <!-- Fontes e ícones -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="transacoes.css" />
+</head>
+
+<body>
+  <!-- TOPO / NAV -->
+  <header class="appbar">
+    <a class="brand" href="dashboard.html">
+      <span class="logo"></span>
+      <strong>FinControl</strong>
+    </a>
+
+    <!-- ORDEM FIXA -->
+    <nav class="tabs">
+      <a href="dashboard.html">Visão Geral</a>
+      <a href="transacoes.html" class="active">Transações</a>
+      <a href="relatorios.html">Relatório</a>
+      <a href="orcamentos.html">Orçamentos</a>
+      <a href="metas.html" >Metas</a>
+    </nav>
+
+    <a class="btn-out" id="btn-logout" href="index.html">Sair</a>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="container">
+    <header class="page-head">
+      <div>
+        <h1>Minhas Transações</h1>
+        <p class="muted">Visualize e gerencie suas transações financeiras.</p>
+      </div>
+
+      <!-- FILTROS -->
+      <div class="filters">
+        <select id="f-period">
+          <option value="this-month">Este mês</option>
+          <option value="last-month">Mês passado</option>
+          <option value="30d">Últimos 30 dias</option>
+          <option value="all">Todos</option>
+        </select>
+
+        <div class="date-pair">
+          <input type="date" id="f-from" />
+          <span>—</span>
+          <input type="date" id="f-to" />
+        </div>
+
+        <select id="f-category">
+          <option value="all">Todas as categorias</option>
+        </select>
+
+        <input id="f-search" placeholder="Buscar descrição..." />
+      </div>
+    </header>
+
+    <!-- TABELA DE TRANSAÇÕES -->
+    <section class="table-card">
+      <table class="tx-table">
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Descrição</th>
+            <th>Categoria</th>
+            <th>Tipo</th>
+            <th class="right">Valor</th>
+            <th class="center">Ações</th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <!-- BOTÃO FLOATING -->
+  <button class="fab" id="btn-new" title="Nova transação">
+    <i class="ri-add-line"></i>
+  </button>
+
+  <!-- MODAL DE CRIAÇÃO/EDIÇÃO -->
+  <div class="modal hidden" id="modal">
+    <div class="modal-card">
+      <header>
+        <h3 id="modal-title">Nova transação</h3>
+        <button id="close-modal" class="icon-btn">
+          <i class="ri-close-line"></i>
+        </button>
+      </header>
+
+      <form id="form-tx">
+        <input type="hidden" id="tx-id" />
+
+        <label>Data</label>
+        <input type="date" id="tx-date" required />
+
+        <label>Descrição</label>
+        <input id="tx-desc" placeholder="Ex.: Mercado, Salário..." required />
+
+        <label>Categoria</label>
+        <select id="tx-cat"></select>
+
+        <label>Tipo</label>
+        <select id="tx-type">
+          <option value="expense">Despesa</option>
+          <option value="income">Receita</option>
+        </select>
+
+        <label>Valor (R$)</label>
+        <input id="tx-value" type="number" step="0.01" placeholder="0.00" required min="0.01" />
+
+        <div class="modal-actions">
+          <button type="button" class="btn" id="cancel">Cancelar</button>
+          <button type="submit" class="btn btn-green">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="transacoes.js"></script>
+</body>
+</html>

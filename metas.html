@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FinControl — Metas</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="metas.css" />
+</head>
+<body>
+  <!-- TOPO -->
+  <header class="appbar">
+    <a class="brand" href="dashboard.html">
+      <span class="logo"></span>
+      <strong>FinControl</strong>
+    </a>
+
+    <!-- ordem com Metas -->
+    <nav class="tabs">
+      <a href="dashboard.html">Visão Geral</a>
+      <a href="transacoes.html">Transações</a>
+      <a href="relatorios.html">Relatório</a>
+      <a href="orcamentos.html">Orçamentos</a>
+      <a href="metas.html" class="active">Metas</a>
+    </nav>
+
+    <a class="btn-out" href="index.html">Sair</a>
+  </header>
+
+  <main class="container">
+    <header class="page-head">
+      <div>
+        <h1>Minhas Metas</h1>
+        <p class="muted">Acompanhe seu progresso e alcance seus sonhos.</p>
+      </div>
+      <button id="btn-new" class="btn btn-green"><i class="ri-add-line"></i> Nova meta</button>
+    </header>
+
+    <!-- lista -->
+    <section id="goals-grid" class="grid"></section>
+
+    <!-- vazio -->
+    <section id="empty" class="empty hidden">
+      <div class="empty-card">
+        <i class="ri-flag-2-line flag"></i>
+        <h3>Você ainda não tem metas.</h3>
+        <p>Que tal começar a planejar seus sonhos?</p>
+        <button id="btn-empty-new" class="btn btn-green">+ Nova Meta</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- MODAL -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-card">
+      <header>
+        <h3 id="modal-title">Nova meta</h3>
+        <button id="close-modal" class="icon-btn"><i class="ri-close-line"></i></button>
+      </header>
+
+      <form id="form-goal">
+        <input type="hidden" id="g-id" />
+
+        <label>Nome da meta</label>
+        <input id="g-name" placeholder="Ex.: Viagem para a Europa" required />
+
+        <label>Valor alvo (R$)</label>
+        <input id="g-target" type="number" step="0.01" min="0.01" required placeholder="Ex.: 15000" />
+
+        <label>Já poupado (R$)</label>
+        <input id="g-saved" type="number" step="0.01" min="0" value="0" />
+
+        <label>Ícone (opcional)</label>
+        <select id="g-icon">
+          <option value="ri-flight-takeoff-line">✈️ Viagem</option>
+          <option value="ri-shield-keyhole-line">🛡️ Reserva</option>
+          <option value="ri-car-line">🚗 Carro</option>
+          <option value="ri-home-4-line">🏠 Casa</option>
+          <option value="ri-graduation-cap-line">🎓 Estudos</option>
+          <option value="ri-piggy-bank-line" selected>🐷 Poupança</option>
+        </select>
+
+        <div class="modal-actions">
+          <button type="button" class="btn" id="cancel">Cancelar</button>
+          <button type="submit" class="btn btn-green">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="metas.js"></script>
+</body>
+</html>

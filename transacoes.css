@@ -1,0 +1,82 @@
+:root{
+  --green:#00C86F; --green-2:#0ea564;
+  --bg:#F5F7F8; --panel:#fff; --muted:#7a8a8a; --border:#e7efed;
+  --shadow:0 8px 24px rgba(12,30,14,.06); --radius:14px;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);color:#172d2a}
+
+/* Appbar */
+.appbar{
+  position:sticky; top:0; z-index:50; background:#fff; border-bottom:1px solid var(--border);
+  display:flex; align-items:center; justify-content:space-between; padding:12px 18px;
+}
+.brand{display:flex; align-items:center; gap:10px; color:#122; text-decoration:none}
+.logo{width:28px; height:28px; border-radius:8px; background:var(--green)}
+.tabs{display:flex; gap:22px}
+.tabs a{color:#2a3; text-decoration:none; color:#475957; font-weight:600}
+.tabs a.active{color:var(--green)}
+.btn-out{background:#f3f7f6; border:1px solid var(--border); padding:8px 12px; border-radius:10px; color:#2a3; text-decoration:none}
+
+/* Page head */
+.container{max-width:1200px; margin:0 auto; padding:22px 18px 64px}
+.page-head{display:flex; justify-content:space-between; align-items:flex-end; gap:14px; margin-bottom:16px}
+.page-head h1{margin:0 0 6px; font-size:36px}
+.muted{color:var(--muted)}
+.filters{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+.filters select,.filters input{background:#fff; border:1px solid var(--border); border-radius:10px; padding:10px 12px}
+.date-pair{display:flex; align-items:center; gap:8px}
+
+/* Card tabela */
+.table-card{background:var(--panel); border:1px solid var(--border); border-radius:16px; box-shadow:var(--shadow); overflow:hidden}
+.tx-table{width:100%; border-collapse:collapse}
+.tx-table thead th{font-size:12px; letter-spacing:.2px; color:#6b7; text-align:left; padding:14px 16px; background:#f7fbf9}
+.tx-table tbody td{padding:16px; border-top:1px solid #f0f3f2}
+.tx-table .right{text-align:right}
+.tx-table .center{text-align:center}
+.badge{display:inline-block; padding:6px 10px; border-radius:999px; font-weight:700; font-size:12px}
+.badge.cat{background:#eef6ff; color:#2d5a9c}
+.badge.income{background:#e6f7ee; color:#0a8f4d}
+.badge.expense{background:#ffefef; color:#d64a4a}
+.value.income{color:#0a8f4d; font-weight:700}
+.value.expense{color:#d64a4a; font-weight:700}
+
+/* Ações */
+.action{border:none; background:transparent; cursor:pointer; padding:6px; border-radius:8px}
+.action:hover{background:#f3f8f6}
+
+/* FAB */
+.fab{
+  position:fixed; right:24px; bottom:24px; width:56px; height:56px; border-radius:50%;
+  border:none; background:var(--green); color:#fff; box-shadow:0 10px 20px rgba(0,0,0,.12); cursor:pointer;
+  display:grid; place-items:center; font-size:22px;
+}
+.fab:hover{transform:translateY(-1px)}
+
+/* Modal */
+.modal{position:fixed; inset:0; display:grid; place-items:center; background:rgba(12,18,14,.28)}
+.modal-card{width:min(480px,92vw); background:#fff; border:1px solid var(--border); border-radius:16px; padding:18px; box-shadow:var(--shadow)}
+.modal-card header{display:flex; justify-content:space-between; align-items:center; margin-bottom:10px}
+.modal-card label{display:block; margin-top:10px; font-weight:600}
+.modal-card input,.modal-card select{width:100%; padding:10px 12px; border-radius:10px; border:1px solid var(--border); margin-top:6px}
+.modal-actions{display:flex; justify-content:flex-end; gap:10px; margin-top:12px}
+.btn{padding:10px 14px; border-radius:10px; border:1px solid var(--border); background:#fff; cursor:pointer}
+.btn.btn-green{background:var(--green); color:#fff; border-color:transparent}
+.icon-btn{background:transparent; border:none; cursor:pointer; padding:6px; border-radius:8px}
+.hidden{display:none !important}
+
+/* Responsivo */
+@media (max-width:720px){
+  .page-head{flex-direction:column; align-items:flex-start}
+}
+.btn-out, .top-actions .btn {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #f3f7f6;
+  color: #2a3;
+  text-decoration: none;
+  font-weight: 600;
+}
+.btn-out:hover, .top-actions .btn:hover { filter: brightness(0.98); }
