@@ -1,40 +1,80 @@
-// menu mobile
+// ==========================
+//  MENU MOBILE (Hamburger)
+// ==========================
 const toggle = document.querySelector('.nav-toggle');
 const menu = document.querySelector('.menu');
+
 if (toggle) {
   toggle.addEventListener('click', () => {
     const expanded = toggle.getAttribute('aria-expanded') === 'true';
     toggle.setAttribute('aria-expanded', String(!expanded));
     menu.classList.toggle('show');
   });
+
+  // fecha o menu se clicar fora dele
+  document.addEventListener('click', (e) => {
+    if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+      menu.classList.remove('show');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  });
 }
 
-// scroll suave para âncoras internas
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', (e) => {
-    const id = a.getAttribute('href');
-    if (!id || id === '#') return;
-    const el = document.querySelector(id);
-    if (!el) return;
+// ==========================
+//  SCROLL SUAVE PARA ÂNCORAS
+// ==========================
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', (e) => {
+    const targetId = link.getAttribute('href');
+    if (!targetId || targetId === '#') return;
+
+    const targetEl = document.querySelector(targetId);
+    if (!targetEl) return;
+
     e.preventDefault();
-    menu.classList.remove('show');
-    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    // Fecha menu mobile se estiver aberto
+    if (menu) menu.classList.remove('show');
+
+    window.scrollTo({
+      top: targetEl.offsetTop - 60,
+      behavior: 'smooth'
+    });
   });
 });
 
-// realça link ativo de acordo com a rolagem
-const sections = ['#inicio','#beneficios','#features','#planos','#contato']
-  .map(s => document.querySelector(s)).filter(Boolean);
-const links = document.querySelectorAll('.menu a[href^="#"]');
+// ==========================
+//  LINK ATIVO CONFORME ROLAGEM
+// ==========================
+const sectionIds = ['#inicio', '#beneficios', '#features', '#planos', '#contato'];
+const sections = sectionIds
+  .map(id => document.querySelector(id))
+  .filter(Boolean);
 
-function setActive() {
-  let cur = '#inicio';
-  const fromTop = window.scrollY + 80;
-  for (const sec of sections) {
-    if (sec.offsetTop <= fromTop) cur = `#${sec.id}`;
+const navLinks = document.querySelectorAll('.menu a[href^="#"]');
+
+function updateActiveLink() {
+  let current = '#inicio';
+  const scrollPos = window.scrollY + 100;
+
+  for (const section of sections) {
+    if (section.offsetTop <= scrollPos) current = `#${section.id}`;
   }
-  links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === cur));
-}
-setActive();
-window.addEventListener('scroll', setActive);
 
+  navLinks.forEach(link => {
+    const isActive = link.getAttribute('href') === current;
+    link.classList.toggle('active', isActive);
+  });
+}
+
+window.addEventListener('scroll', updateActiveLink);
+updateActiveLink();
+
+// ==========================
+//  SCROLL TO TOP (opcional futuro)
+// ==========================
+// const backToTop = document.querySelector('.back-to-top');
+// window.addEventListener('scroll', () => {
+//   if (window.scrollY > 300) backToTop?.classList.add('show');
+//   else backToTop?.classList.remove('show');
+// });

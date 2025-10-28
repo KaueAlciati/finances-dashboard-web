@@ -12,12 +12,13 @@
 
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
   <!-- Navbar -->
   <header class="navbar">
     <div class="container nav">
       <a href="#inicio" class="brand" aria-label="FinControl — Início">
-        <span class="logo" aria-hidden="true"></span>
+        <img src="img/logo.png" alt="Logo FinControl" class="logo-img" />
         <span class="brand-name">FinControl</span>
       </a>
 
@@ -30,7 +31,6 @@
         <a href="#beneficios">Funcionalidades</a>
         <a href="#planos">Planos</a>
         <a href="#contato">Contato</a>
-        <!-- botão Entrar -> login.html -->
         <a href="login.html" class="btn small" id="btn-enter-nav">Entrar</a>
       </nav>
     </div>
@@ -47,22 +47,16 @@
             receitas e despesas, acompanhar dashboards e receber relatórios automáticos.
           </p>
           <div class="hero-actions">
-            <!-- Começar Agora -> login.html -->
             <a href="login.html" class="btn">Começar Agora</a>
-            <!-- Ver Demo -> dashboard.html (demo visual) -->
             <a href="dashboard.html" class="btn ghost">Ver Demo</a>
           </div>
         </div>
 
-        <!-- Mock do dashboard (placeholder) -->
+        <!-- Imagem do painel FinControl -->
         <div class="hero-media" aria-hidden="true">
-          <div class="ui-window">
-            <div class="ui-top"></div>
-            <div class="ui-body">
-              <div class="ui-chart bars"></div>
-              <div class="ui-chart line"></div>
-            </div>
-          </div>
+          <img src="img/paineldashboard.png"
+               alt="Painel do FinControl mostrando cards, gráficos e controles financeiros"
+               class="hero-img" />
         </div>
       </div>
     </section>
@@ -71,7 +65,9 @@
     <section id="beneficios" class="section">
       <div class="container">
         <h2 class="title center">Benefícios</h2>
-        <p class="text center max">O FinControl oferece uma solução completa para você ter controle total das suas finanças.</p>
+        <p class="text center max">
+          O FinControl oferece uma solução completa para você ter controle total das suas finanças.
+        </p>
 
         <div class="cards">
           <article class="card">
@@ -108,32 +104,44 @@
         <p class="text center max">Conheça as ferramentas que vão elevar seu controle financeiro.</p>
 
         <div class="features">
+          <!-- 1) Gráficos em tempo real -->
           <div class="feature">
-            <div class="feat-media gradient a"></div>
+            <div class="feat-media">
+              <img class="feat-media-img" src="img/Gráficos em tempo real.png" alt="Gráficos em tempo real do FinControl" loading="lazy">
+            </div>
             <div class="feat-text">
               <h3>Gráficos em tempo real</h3>
               <p>Visualize dados financeiros com gráficos dinâmicos e interativos.</p>
             </div>
           </div>
 
-          <div class="feature">
-            <div class="feat-media gradient b"></div>
+          <!-- 2) Orçamentos automáticos -->
+          <div class="feature reverse">
+            <div class="feat-media">
+              <img class="feat-media-img" src="img/Orçamentos automáticos.png" alt="Orçamentos automáticos do FinControl" loading="lazy">
+            </div>
             <div class="feat-text">
               <h3>Orçamentos automáticos</h3>
               <p>Crie e acompanhe orçamentos que te ajudam a economizar todo mês.</p>
             </div>
           </div>
 
+          <!-- 3) Metas mensais -->
           <div class="feature">
-            <div class="feat-media gradient c"></div>
+            <div class="feat-media">
+              <img class="feat-media-img" src="img/Metas mensais.png" alt="Metas mensais do FinControl" loading="lazy">
+            </div>
             <div class="feat-text">
               <h3>Metas mensais</h3>
               <p>Defina objetivos e acompanhe o progresso com indicadores visuais.</p>
             </div>
           </div>
 
-          <div class="feature">
-            <div class="feat-media gradient d"></div>
+          <!-- 4) Histórico de transações -->
+          <div class="feature reverse">
+            <div class="feat-media">
+              <img class="feat-media-img" src="img/Histórico de transações.png" alt="Histórico de transações do FinControl" loading="lazy">
+            </div>
             <div class="feat-text">
               <h3>Histórico de transações</h3>
               <p>Acesse todo o seu histórico com filtros por período e categoria.</p>
@@ -158,7 +166,6 @@
               <li><i class="ri-check-line"></i> Relatórios básicos</li>
               <li><i class="ri-check-line"></i> Suporte por e-mail</li>
             </ul>
-            <!-- Começar -> login.html -->
             <a href="login.html" class="btn alt">Começar</a>
           </article>
 
@@ -172,7 +179,6 @@
               <li><i class="ri-check-line"></i> Suporte prioritário</li>
               <li><i class="ri-check-line"></i> Integração com bot</li>
             </ul>
-            <!-- Assinar -> login.html -->
             <a href="login.html" class="btn">Assinar</a>
           </article>
         </div>
@@ -215,7 +221,8 @@
     <div class="container foot-grid">
       <div class="foot-brand">
         <a href="#inicio" class="brand">
-          <span class="logo"></span><span class="brand-name">FinControl</span>
+          <img src="img/logo.png" alt="Logo FinControl" class="logo-img" />
+          <span class="brand-name">FinControl</span>
         </a>
         <p class="foot-text">O sistema inteligente de controle financeiro para te ajudar a gerir seu dinheiro.</p>
       </div>
@@ -245,7 +252,7 @@
     </div>
   </footer>
 
-  <!-- Botão flutuante -> demo -->
+  <!-- Botão flutuante -->
   <a href="dashboard.html" class="fab" aria-label="Testar Demo">
     <i class="ri-play-circle-line"></i>
     <span>Testar Demo</span>
