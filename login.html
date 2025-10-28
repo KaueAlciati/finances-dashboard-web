@@ -13,7 +13,7 @@
   <main class="page">
     <!-- Marca -->
     <header class="brand">
-      <span class="logo" aria-hidden="true"></span>
+      <img src="./img/logo.png" alt="Logo FinControl" class="logo-img" />
       <h1 class="brand-name">FinControl</h1>
     </header>
 
@@ -22,7 +22,6 @@
       <h2 id="titulo" class="title">Entrar na sua conta</h2>
       <p class="subtitle">Acesse seus dashboards e acompanhe suas finanças.</p>
 
-      <!-- Alertas criados dinamicamente -->
       <form id="form-login" novalidate>
         <!-- E-mail -->
         <label for="email">E-mail</label>
@@ -101,12 +100,11 @@
         return;
       }
 
-      // login fake
       localStorage.setItem("fincontrol_user", email.value);
       window.location.href = "dashboard.html";
     });
 
-    // redirecionamentos extras (backup se clicar sem JS inline)
+    // redirecionamentos
     document.getElementById("forgot-link").addEventListener("click", (e) => {
       e.preventDefault();
       window.location.href = "forgot.html";

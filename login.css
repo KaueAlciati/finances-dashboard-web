@@ -1,7 +1,7 @@
 :root{
   --green:#00C86F;
   --green-strong:#00FF88;
-  --bg:#F2F7F4;
+  --bg:#f3f3f3;
   --white:#fff;
   --text:#1F2A2A;
   --muted:#7A8A8A;
@@ -92,4 +92,57 @@ label{display:block; font-weight:600; margin-top:12px; margin-bottom:6px}
 @media (max-width:480px){
   .title{font-size:24px}
   .card{padding:20px 16px}
+}
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.logo-img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+
+.brand-name {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #16302e;
+}
+body {
+  background: var(--bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ===== imagem decorativa lateral ===== */
+body::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50vw; /* metade da tela */
+  height: 100vh;
+  background: url("./img/bg-fincontrol.jpg") no-repeat center right;
+  background-size: cover;          /* cobre o lado direito proporcionalmente */
+  background-position: center right; /* centraliza a imagem na vertical e fixa na direita */
+  background-repeat: no-repeat;
+  opacity: 1; /* mantém as cores vivas */
+  z-index: 0;
+  border-left: 0px solid rgba(144, 17, 17, 0.05);
+}
+
+/* garante que o conteúdo fique acima da imagem */
+.page {
+  position: relative;
+  z-index: 1;
 }
