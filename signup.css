@@ -98,3 +98,48 @@ label{display:block; font-weight:600; margin-top:12px; margin-bottom:6px}
   .title{font-size:24px}
   .card{padding:20px 16px}
 }
+
+/* --- override para o tamanho da logo (igual ao login) --- */
+.brand .logo,
+.brand .logo-img{
+  width: 70px;
+  height: 70px;
+}
+
+/* (opcional) ajusta um pouquinho o título abaixo da logo */
+.brand-name{
+  font-size: 1.6rem;
+}
+/* ===== Imagem decorativa no canto direito (Signup) ===== */
+body::after{
+  content:"";
+  position: fixed;        /* fixa no viewport */
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  pointer-events: none;   /* não bloqueia cliques */
+
+  /* tamanho do bloco da imagem */
+  width: 32vw;            /* ~1/3 da largura */
+  max-width: 560px;
+  min-width: 320px;
+  height: 60vh;
+
+  /* imagem: canto direito, sem cortar, proporcional */
+  background: url("./img/signup.png") no-repeat right bottom;
+  background-size: contain;
+
+  /* sem transparência/fade */
+  /* opacity: 1; */
+}
+
+/* garante que o conteúdo fique acima da imagem */
+.page{ position: relative; z-index: 1; }
+
+/* responsivo */
+@media (max-width: 1200px){
+  body::after{ width: 36vw; height: 50vh; }
+}
+@media (max-width: 900px){
+  body::after{ display: none; }
+}

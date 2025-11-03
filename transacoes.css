@@ -80,3 +80,13 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;b
   font-weight: 600;
 }
 .btn-out:hover, .top-actions .btn:hover { filter: brightness(0.98); }
+
+/* ===== LOGO NA APPBAR ===== */
+.brand .logo-img{
+  width:28px;            /* combina com o layout do dashboard */
+  height:28px;
+  object-fit:contain;
+  display:block;
+}
+/* se existir o quadradinho antigo .logo, esconda (safe) */
+.brand .logo{ display:none; }

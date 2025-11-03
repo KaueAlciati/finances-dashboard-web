@@ -7,33 +7,34 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+
+  <!-- seu CSS desta página -->
   <link rel="stylesheet" href="signup.css" />
 </head>
 <body>
   <main class="page">
-    <!-- Marca -->
-    <header class="brand">
-      <span class="logo" aria-hidden="true"></span>
+    <!-- ===== Brand (logo + nome) ===== -->
+    <header class="brand" aria-label="FinControl">
+      <!-- use a MESMA logo que já colocou no login -->
+      <img class="logo-img" src="./img/logo.png" alt="Logo FinControl" />
       <h1 class="brand-name">FinControl</h1>
     </header>
 
-    <!-- Card -->
+    <!-- ===== Card ===== -->
     <section class="card" aria-labelledby="titulo">
       <h2 id="titulo" class="title">Criar sua conta</h2>
       <p class="subtitle">Comece grátis e organize suas finanças em minutos.</p>
-
-      <!-- (alerta é criado dinamicamente pelo JS quando necessário) -->
 
       <form id="form-signup" novalidate>
         <!-- Nome -->
         <label for="nome">Nome completo</label>
         <div class="input">
           <i class="ri-user-line" aria-hidden="true"></i>
-          <input id="nome" name="name" type="text" placeholder="Seu nome completo" required />
+          <input id="nome" name="nome" type="text" placeholder="Seu nome completo" required />
         </div>
         <small id="nome-err" class="error"></small>
 
-        <!-- E-mail -->
+        <!-- Email -->
         <label for="email">E-mail</label>
         <div class="input">
           <i class="ri-mail-line" aria-hidden="true"></i>
@@ -45,45 +46,88 @@
         <label for="senha">Senha</label>
         <div class="input">
           <i class="ri-lock-2-line" aria-hidden="true"></i>
-          <input id="senha" name="password" type="password" placeholder="Crie uma senha forte" required minlength="8" />
+          <input id="senha" name="password" type="password" placeholder="Crie uma senha forte" required minlength="6" />
           <button type="button" class="icon-btn" id="togglePass" aria-label="Mostrar senha">
             <i class="ri-eye-line"></i>
           </button>
         </div>
-        <div class="strength">
-          <span class="label">Força da senha</span>
-          <div class="bars">
-            <span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span>
-          </div>
-          <span id="strength-text" class="strength-text">—</span>
-        </div>
         <small id="senha-err" class="error"></small>
 
         <!-- Confirmar -->
-        <label for="confirm">Confirmar senha</label>
+        <label for="confirma">Confirmar senha</label>
         <div class="input">
           <i class="ri-check-double-line" aria-hidden="true"></i>
-          <input id="confirm" name="confirm" type="password" placeholder="Repita sua senha" required minlength="8" />
+          <input id="confirma" name="confirm" type="password" placeholder="Repita sua senha" required minlength="6" />
         </div>
-        <small id="confirm-err" class="error"></small>
+        <small id="confirma-err" class="error"></small>
 
         <!-- Termos -->
-        <label class="check terms">
-          <input type="checkbox" id="terms" />
-          <span>Concordo com os <a href="#" class="link">Termos de Uso</a> e a <a href="#" class="link">Política de Privacidade</a>.</span>
-        </label>
-        <small id="terms-err" class="error"></small>
+        <div class="row terms">
+          <label class="check">
+            <input type="checkbox" id="termos" />
+            <span>Concordo com os <a href="#" class="link">Termos de Uso</a> e a <a href="#" class="link">Política de Privacidade</a>.</span>
+          </label>
+        </div>
+        <small id="termos-err" class="error"></small>
 
         <button id="submit" class="btn primary" type="submit">
           <span class="btn-label">Criar conta</span>
           <span class="spinner" aria-hidden="true"></span>
         </button>
 
-        <p class="switch">Já tem conta? <a href="/login.html" class="link">Entrar</a></p>
+        <p class="switch">Já tem conta? <a href="login.html" class="link">Entrar</a></p>
       </form>
     </section>
+
+    <!-- Rodapé -->
+    <footer class="footnote">
+      <p><i class="ri-shield-check-line"></i> <strong>Dica:</strong> nunca compartilhe sua senha com ninguém.</p>
+      <a href="#" class="link">Política de Privacidade</a>
+    </footer>
   </main>
 
-  <script src="signup.js"></script>
+  <script>
+    // Mostrar/ocultar senha
+    const senhaInput = document.getElementById('senha');
+    const togglePass = document.getElementById('togglePass');
+    togglePass.addEventListener('click', () => {
+      const isPwd = senhaInput.type === 'password';
+      senhaInput.type = isPwd ? 'text' : 'password';
+      togglePass.innerHTML = isPwd
+        ? '<i class="ri-eye-off-line"></i>'
+        : '<i class="ri-eye-line"></i>';
+    });
+
+    // Validação simples + “cadastro” fake
+    const form = document.getElementById('form-signup');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const nome      = document.getElementById('nome');
+      const email     = document.getElementById('email');
+      const senha     = document.getElementById('senha');
+      const confirma  = document.getElementById('confirma');
+      const termos    = document.getElementById('termos');
+
+      const nomeErr     = document.getElementById('nome-err');
+      const emailErr    = document.getElementById('email-err');
+      const senhaErr    = document.getElementById('senha-err');
+      const confirmaErr = document.getElementById('confirma-err');
+      const termosErr   = document.getElementById('termos-err');
+
+      // limpa erros
+      [nomeErr,emailErr,senhaErr,confirmaErr,termosErr].forEach(el => el.textContent = '');
+
+      if (!nome.value.trim())      { nomeErr.textContent = 'Informe seu nome.'; return; }
+      if (!email.value.trim())     { emailErr.textContent = 'Informe seu e-mail.'; return; }
+      if (senha.value.length < 6)  { senhaErr.textContent = 'Mínimo de 6 caracteres.'; return; }
+      if (confirma.value !== senha.value) { confirmaErr.textContent = 'As senhas não conferem.'; return; }
+      if (!termos.checked)         { termosErr.textContent = 'É necessário aceitar os termos.'; return; }
+
+      // “cria” conta (fake) e já loga
+      localStorage.setItem('fincontrol_user', email.value);
+      window.location.href = 'dashboard.html';
+    });
+  </script>
 </body>
 </html>

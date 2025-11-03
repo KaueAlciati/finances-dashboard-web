@@ -4,26 +4,36 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>FinControl — Recuperar senha</title>
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
   <link rel="stylesheet" href="forgot.css" />
 </head>
 <body>
   <main class="page">
+    <!-- Marca -->
     <header class="brand">
-      <span class="logo" aria-hidden="true"></span>
+      <img class="logo-img" src="./img/logo.png" alt="Logo FinControl" width="64" height="64">
       <h1 class="brand-name">FinControl</h1>
     </header>
 
+    <!-- Card -->
     <section class="card" aria-labelledby="titulo">
       <h2 id="titulo" class="title">Recuperar senha</h2>
-      <p class="subtitle"><a class="link" href="/login.html">Voltar para o login</a></p>
 
-      <!-- alerta dinâmico via JS -->
+      <!-- APENAS HTML: centraliza o link -->
+      <p style="text-align:center; margin:-4px 0 14px;">
+        <a href="login.html" class="link">
+          <i class="ri-arrow-left-line" aria-hidden="true"></i>
+          Voltar para o login
+        </a>
+      </p>
 
       <form id="form-forgot" novalidate>
         <label for="email">E-mail</label>
         <div class="input">
-          <input id="email" type="email" placeholder="seuemail@exemplo.com" required />
+          <i class="ri-mail-line" aria-hidden="true"></i>
+          <input id="email" name="email" type="email" placeholder="seuemail@exemplo.com" required />
         </div>
         <small id="email-err" class="error"></small>
 
@@ -32,7 +42,7 @@
           <span class="spinner" aria-hidden="true"></span>
         </button>
 
-        <p class="hint">
+        <p class="subtitle" style="margin-top:10px;">
           Se o e-mail existir, você receberá um link para redefinir sua senha.
         </p>
       </form>

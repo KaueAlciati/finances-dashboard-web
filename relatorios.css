@@ -58,3 +58,13 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;b
   .charts-row{grid-template-columns:1fr}
   .cards{grid-template-columns:1fr}
 }
+
+/* ===== LOGO NA APPBAR ===== */
+.brand .logo-img{
+  width:28px;
+  height:28px;
+  object-fit:contain;
+  display:block;
+}
+/* esconde o quadradinho antigo caso exista */
+.brand .logo{ display:none; }

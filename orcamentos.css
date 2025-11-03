@@ -57,3 +57,13 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;b
 .modal-card h3{margin:0}
 .modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:16px}
 .icon-btn{background:none;border:none;font-size:20px;cursor:pointer}
+
+/* ===== LOGO NA APPBAR ===== */
+.brand .logo-img{
+  width:28px;
+  height:28px;
+  object-fit:contain;
+  display:block;
+}
+/* se o quadradinho .logo ainda existir, esconde */
+.brand .logo{ display:none; }
