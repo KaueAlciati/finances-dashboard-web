@@ -204,27 +204,44 @@ body {
   min-width: 54px;
   text-align: right
 }
+
 /* ===== imagem decorativa no canto direito (RESET) ===== */
-body::after{
-  content:"";
-  position: fixed;          /* fixa no viewport */
+body::after {
+  content: "";
+  position: fixed;
+  /* fixa no viewport */
   right: 0;
   bottom: 0;
   z-index: 0;
   pointer-events: none;
 
-  width: 32vw;              /* ~1/3 da tela */
+  width: 32vw;
+  /* ~1/3 da tela */
   max-width: 560px;
   min-width: 320px;
   height: 60vh;
 
   background: url("./img/reset.png") no-repeat right bottom;
-  background-size: contain; /* mantém proporção */
+  background-size: contain;
+  /* mantém proporção */
 }
 
 /* garante que o conteúdo fique acima da imagem */
-.page{ position: relative; z-index: 1; }
+.page {
+  position: relative;
+  z-index: 1;
+}
 
 /* responsivo */
-@media (max-width:1200px){ body::after{ width:36vw; height:50vh; } }
-@media (max-width:900px){  body::after{ display:none; } }
+@media (max-width:1200px) {
+  body::after {
+    width: 36vw;
+    height: 50vh;
+  }
+}
+
+@media (max-width:900px) {
+  body::after {
+    display: none;
+  }
+}

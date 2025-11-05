@@ -2,54 +2,54 @@ const KEY_GOALS = 'fincontrol_goals_v1';
 
 let goals = [];
 
-const grid   = document.getElementById('goals-grid');
-const empty  = document.getElementById('empty');
+const grid = document.getElementById('goals-grid');
+const empty = document.getElementById('empty');
 const btnNew = document.getElementById('btn-new');
 const btnEmptyNew = document.getElementById('btn-empty-new');
 
-const modal  = document.getElementById('modal');
+const modal = document.getElementById('modal');
 const closeM = document.getElementById('close-modal');
 const cancel = document.getElementById('cancel');
-const form   = document.getElementById('form-goal');
+const form = document.getElementById('form-goal');
 
-const gId     = document.getElementById('g-id');
-const gName   = document.getElementById('g-name');
+const gId = document.getElementById('g-id');
+const gName = document.getElementById('g-name');
 const gTarget = document.getElementById('g-target');
-const gSaved  = document.getElementById('g-saved');
-const gIcon   = document.getElementById('g-icon');
+const gSaved = document.getElementById('g-saved');
+const gIcon = document.getElementById('g-icon');
 const modalTitle = document.getElementById('modal-title');
 
-const money = (n)=> (+n).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+const money = (n) => (+n).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
-function load(){
+function load() {
   goals = JSON.parse(localStorage.getItem(KEY_GOALS) || '[]');
 }
-function save(){
+function save() {
   localStorage.setItem(KEY_GOALS, JSON.stringify(goals));
 }
 
-function openModal(edit=false){
+function openModal(edit = false) {
   modalTitle.textContent = edit ? 'Editar meta' : 'Nova meta';
   modal.classList.remove('hidden');
 }
-function closeModal(){ modal.classList.add('hidden'); form.reset(); gId.value=''; }
+function closeModal() { modal.classList.add('hidden'); form.reset(); gId.value = ''; }
 
-function render(){
+function render() {
   grid.innerHTML = '';
-  if (!goals.length){
+  if (!goals.length) {
     empty.classList.remove('hidden');
   } else {
     empty.classList.add('hidden');
   }
 
-  goals.forEach(goal=>{
-    const pct = Math.min(Math.round((goal.saved/goal.target)*100),100) || 0;
+  goals.forEach(goal => {
+    const pct = Math.min(Math.round((goal.saved / goal.target) * 100), 100) || 0;
 
     const card = document.createElement('div');
     card.className = 'goal-card';
     card.innerHTML = `
       <div class="goal-head">
-        <div class="goal-icon"><i class="${goal.icon||'ri-piggy-bank-line'}"></i></div>
+        <div class="goal-icon"><i class="${goal.icon || 'ri-piggy-bank-line'}"></i></div>
         <h3 class="goal-title">${goal.name}</h3>
         <div class="goal-actions">
           <button class="action" title="Editar" onclick="editGoal('${goal.id}')"><i class="ri-pencil-line"></i></button>
@@ -69,41 +69,41 @@ function render(){
   });
 }
 
-window.editGoal = function(id){
-  const g = goals.find(x=>x.id===id); if(!g) return;
+window.editGoal = function (id) {
+  const g = goals.find(x => x.id === id); if (!g) return;
   gId.value = g.id;
   gName.value = g.name;
   gTarget.value = g.target;
-  gSaved.value  = g.saved;
-  gIcon.value   = g.icon || 'ri-piggy-bank-line';
+  gSaved.value = g.saved;
+  gIcon.value = g.icon || 'ri-piggy-bank-line';
   openModal(true);
 }
 
-window.deleteGoal = function(id){
-  if(!confirm('Excluir esta meta?')) return;
-  goals = goals.filter(g=>g.id!==id);
+window.deleteGoal = function (id) {
+  if (!confirm('Excluir esta meta?')) return;
+  goals = goals.filter(g => g.id !== id);
   save(); render();
 };
 
-form.addEventListener('submit', (e)=>{
+form.addEventListener('submit', (e) => {
   e.preventDefault();
   const data = {
-    id: gId.value || Math.random().toString(36).slice(2,9),
+    id: gId.value || Math.random().toString(36).slice(2, 9),
     name: gName.value.trim(),
     target: parseFloat(gTarget.value),
-    saved: parseFloat(gSaved.value||'0'),
+    saved: parseFloat(gSaved.value || '0'),
     icon: gIcon.value
   };
-  if(!data.name || !data.target || data.target<=0){ alert('Preencha os campos corretamente.'); return; }
+  if (!data.name || !data.target || data.target <= 0) { alert('Preencha os campos corretamente.'); return; }
 
-  const idx = goals.findIndex(g=>g.id===data.id);
-  if(idx>=0) goals[idx]=data; else goals.push(data);
+  const idx = goals.findIndex(g => g.id === data.id);
+  if (idx >= 0) goals[idx] = data; else goals.push(data);
 
   save(); render(); closeModal();
 });
 
-btnNew.addEventListener('click', ()=>{ openModal(false); });
-btnEmptyNew?.addEventListener('click', ()=>{ openModal(false); });
+btnNew.addEventListener('click', () => { openModal(false); });
+btnEmptyNew?.addEventListener('click', () => { openModal(false); });
 closeM.addEventListener('click', closeModal);
 cancel.addEventListener('click', closeModal);
 

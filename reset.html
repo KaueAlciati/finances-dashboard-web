@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,13 +9,13 @@
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
   <link rel="stylesheet" href="reset.css" />
 </head>
+
 <body>
   <main class="page">
     <header class="brand">
       <!-- Logo adicionada (sem alterar CSS global) -->
-      <img src="./img/logo.png" alt="Logo FinControl"
-           class="logo-img"
-           style="width:64px;height:64px;object-fit:contain;display:block;margin:0 auto 8px;" />
+      <img src="./img/logo.png" alt="Logo FinControl" class="logo-img"
+        style="width:64px;height:64px;object-fit:contain;display:block;margin:0 auto 8px;" />
       <h1 class="brand-name">FinControl</h1>
     </header>
 
@@ -28,7 +29,8 @@
         <div class="input">
           <i class="ri-lock-2-line" aria-hidden="true"></i>
           <input id="senha" type="password" placeholder="Digite sua nova senha" required minlength="8" />
-          <button type="button" class="icon-btn" id="toggle1" aria-label="Mostrar senha"><i class="ri-eye-line"></i></button>
+          <button type="button" class="icon-btn" id="toggle1" aria-label="Mostrar senha"><i
+              class="ri-eye-line"></i></button>
         </div>
         <div class="strength">
           <div class="bar"><span></span></div>
@@ -40,7 +42,8 @@
         <div class="input">
           <i class="ri-check-double-line" aria-hidden="true"></i>
           <input id="confirm" type="password" placeholder="Confirme sua nova senha" required minlength="8" />
-          <button type="button" class="icon-btn" id="toggle2" aria-label="Mostrar senha"><i class="ri-eye-line"></i></button>
+          <button type="button" class="icon-btn" id="toggle2" aria-label="Mostrar senha"><i
+              class="ri-eye-line"></i></button>
         </div>
         <small id="confirm-err" class="error"></small>
 
@@ -54,4 +57,5 @@
 
   <script src="reset.js"></script>
 </body>
+
 </html>

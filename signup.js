@@ -29,22 +29,22 @@ document.getElementById('togglePass').addEventListener('click', () => {
 // Helpers
 const isEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
-function setError(inputEl, errEl, msg){
+function setError(inputEl, errEl, msg) {
   inputEl.parentElement.classList.add('active-invalid');
   errEl.textContent = msg || '';
 }
-function clearError(inputEl, errEl){
+function clearError(inputEl, errEl) {
   inputEl.parentElement.classList.remove('active-invalid');
   errEl.textContent = '';
 }
-function setLoading(on){
+function setLoading(on) {
   submitBtn.disabled = on;
   spinner.style.display = on ? 'inline-block' : 'none';
   btnLabel.textContent = on ? 'Criando conta…' : 'Criar conta';
 }
 
 // Força da senha: 0–4
-function scorePassword(pwd){
+function scorePassword(pwd) {
   let s = 0;
   if (pwd.length >= 8) s++;
   if (/[a-z]/.test(pwd) && /[A-Z]/.test(pwd)) s++;
@@ -52,14 +52,14 @@ function scorePassword(pwd){
   if (/[^A-Za-z0-9]/.test(pwd)) s++;
   return s;
 }
-function renderStrength(pwd){
+function renderStrength(pwd) {
   const s = scorePassword(pwd);
-  strengthWrap.classList.remove('str-1','str-2','str-3','str-4');
+  strengthWrap.classList.remove('str-1', 'str-2', 'str-3', 'str-4');
   if (s >= 1) strengthWrap.classList.add(`str-${s}`);
-  const label = ['—','Fraca','Média','Boa','Forte'][s];
+  const label = ['—', 'Fraca', 'Média', 'Boa', 'Forte'][s];
   strengthText.textContent = label;
 }
-senha.addEventListener('input', ()=> renderStrength(senha.value));
+senha.addEventListener('input', () => renderStrength(senha.value));
 
 // Validações em tempo real
 nome.addEventListener('input', () => {
@@ -75,7 +75,7 @@ confirm.addEventListener('input', () => {
   ok ? clearError(confirm, confirmErr) : setError(confirm, confirmErr, 'As senhas não coincidem.');
 });
 
-function showAlert(msg){
+function showAlert(msg) {
   let alertBox = document.querySelector('.card .alert');
   if (!alertBox) {
     alertBox = document.createElement('div');
@@ -87,7 +87,7 @@ function showAlert(msg){
   alertBox.querySelector('.msg').textContent = msg || 'Não foi possível criar a conta.';
   alertBox.style.display = 'flex';
 }
-function hideAlert(){
+function hideAlert() {
   const alertBox = document.querySelector('.card .alert');
   if (alertBox) alertBox.style.display = 'none';
 }
@@ -119,7 +119,7 @@ form.addEventListener('submit', async (e) => {
   if (!ok) return;
 
   // simulação de criação
-  try{
+  try {
     setLoading(true);
     await new Promise(r => setTimeout(r, 900));
 
@@ -141,9 +141,9 @@ form.addEventListener('submit', async (e) => {
     // Sucesso mock
     alert('Conta criada com sucesso! Você já pode entrar.');
     window.location.href = '/login.html';
-  } catch(err){
+  } catch (err) {
     showAlert(err.message);
-  } finally{
+  } finally {
     setLoading(false);
   }
 });

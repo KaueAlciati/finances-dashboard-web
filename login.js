@@ -37,15 +37,15 @@ document.getElementById('togglePass').addEventListener('click', () => {
 // validação helpers
 const isEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
-function setError(el, msgEl, msg){
+function setError(el, msgEl, msg) {
   el.parentElement.classList.add('active-invalid');
   msgEl.textContent = msg;
 }
-function clearError(el, msgEl){
+function clearError(el, msgEl) {
   el.parentElement.classList.remove('active-invalid');
   msgEl.textContent = '';
 }
-function setLoading(on){
+function setLoading(on) {
   submitBtn.disabled = on;
   spinner.style.display = on ? 'inline-block' : 'none';
   btnLabel.textContent = on ? 'Entrando…' : 'Entrar';

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -11,6 +12,7 @@
   <!-- seu CSS desta página -->
   <link rel="stylesheet" href="signup.css" />
 </head>
+
 <body>
   <main class="page">
     <!-- ===== Brand (logo + nome) ===== -->
@@ -65,7 +67,8 @@
         <div class="row terms">
           <label class="check">
             <input type="checkbox" id="termos" />
-            <span>Concordo com os <a href="#" class="link">Termos de Uso</a> e a <a href="#" class="link">Política de Privacidade</a>.</span>
+            <span>Concordo com os <a href="#" class="link">Termos de Uso</a> e a <a href="#" class="link">Política de
+                Privacidade</a>.</span>
           </label>
         </div>
         <small id="termos-err" class="error"></small>
@@ -103,26 +106,26 @@
     form.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      const nome      = document.getElementById('nome');
-      const email     = document.getElementById('email');
-      const senha     = document.getElementById('senha');
-      const confirma  = document.getElementById('confirma');
-      const termos    = document.getElementById('termos');
+      const nome = document.getElementById('nome');
+      const email = document.getElementById('email');
+      const senha = document.getElementById('senha');
+      const confirma = document.getElementById('confirma');
+      const termos = document.getElementById('termos');
 
-      const nomeErr     = document.getElementById('nome-err');
-      const emailErr    = document.getElementById('email-err');
-      const senhaErr    = document.getElementById('senha-err');
+      const nomeErr = document.getElementById('nome-err');
+      const emailErr = document.getElementById('email-err');
+      const senhaErr = document.getElementById('senha-err');
       const confirmaErr = document.getElementById('confirma-err');
-      const termosErr   = document.getElementById('termos-err');
+      const termosErr = document.getElementById('termos-err');
 
       // limpa erros
-      [nomeErr,emailErr,senhaErr,confirmaErr,termosErr].forEach(el => el.textContent = '');
+      [nomeErr, emailErr, senhaErr, confirmaErr, termosErr].forEach(el => el.textContent = '');
 
-      if (!nome.value.trim())      { nomeErr.textContent = 'Informe seu nome.'; return; }
-      if (!email.value.trim())     { emailErr.textContent = 'Informe seu e-mail.'; return; }
-      if (senha.value.length < 6)  { senhaErr.textContent = 'Mínimo de 6 caracteres.'; return; }
+      if (!nome.value.trim()) { nomeErr.textContent = 'Informe seu nome.'; return; }
+      if (!email.value.trim()) { emailErr.textContent = 'Informe seu e-mail.'; return; }
+      if (senha.value.length < 6) { senhaErr.textContent = 'Mínimo de 6 caracteres.'; return; }
       if (confirma.value !== senha.value) { confirmaErr.textContent = 'As senhas não conferem.'; return; }
-      if (!termos.checked)         { termosErr.textContent = 'É necessário aceitar os termos.'; return; }
+      if (!termos.checked) { termosErr.textContent = 'É necessário aceitar os termos.'; return; }
 
       // “cria” conta (fake) e já loga
       localStorage.setItem('fincontrol_user', email.value);
@@ -130,4 +133,5 @@
     });
   </script>
 </body>
+
 </html>

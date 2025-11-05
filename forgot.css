@@ -1,136 +1,224 @@
-:root{
-  --green:#00C86F;
-  --bg:#F2F7F4;
-  --white:#fff;
-  --text:#1F2A2A;
-  --muted:#7A8A8A;
-  --border:#E5F1EA;
-  --error:#c62828;
-  --shadow:0 10px 26px rgba(0,0,0,.08);
+:root {
+  --green: #00C86F;
+  --bg: #F2F7F4;
+  --white: #fff;
+  --text: #1F2A2A;
+  --muted: #7A8A8A;
+  --border: #E5F1EA;
+  --error: #c62828;
+  --shadow: 0 10px 26px rgba(0, 0, 0, .08);
 }
 
-*{box-sizing:border-box}
-html,body{margin:0}
-body{
-  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
-  color:var(--text);
-  background:var(--bg);
+* {
+  box-sizing: border-box
+}
+
+html,
+body {
+  margin: 0
+}
+
+body {
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  color: var(--text);
+  background: var(--bg);
 }
 
 /* Layout */
-.page{
-  min-height:100dvh;
-  display:grid;
-  grid-template-rows:auto 1fr;
-  place-items:center;
-  gap:16px;
-  padding:72px 24px 24px; /* espaço pra descer a marca */
+.page {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  place-items: center;
+  gap: 16px;
+  padding: 72px 24px 24px;
+  /* espaço pra descer a marca */
 }
 
 /* Marca (igual ao login) */
-.brand{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  margin:0 0 8px 0;
-  gap:8px;
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 8px 0;
+  gap: 8px;
 }
-.logo-img{
-  width:70px;   /* mesmo tamanho do login */
-  height:70px;
-  object-fit:contain;
+
+.logo-img {
+  width: 70px;
+  /* mesmo tamanho do login */
+  height: 70px;
+  object-fit: contain;
 }
-.brand-name{
-  font-size:1.6rem;
-  font-weight:700;
-  color:#16302e;
-  margin:0;
+
+.brand-name {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #16302e;
+  margin: 0;
 }
 
 /* Card */
-.card{
-  width:min(640px,92vw);
-  background:var(--white);
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:26px 22px;
-  box-shadow:var(--shadow);
+.card {
+  width: min(640px, 92vw);
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 26px 22px;
+  box-shadow: var(--shadow);
 }
-.title{
-  margin:4px 0 12px;
-  font-size:28px;
-  font-weight:800;
-  text-align:center;
+
+.title {
+  margin: 4px 0 12px;
+  font-size: 28px;
+  font-weight: 800;
+  text-align: center;
 }
-.center{text-align:center; margin:-6px 0 14px;}
-.link{color:#138f5c; text-decoration:none}
-.link:hover{text-decoration:underline}
+
+.center {
+  text-align: center;
+  margin: -6px 0 14px;
+}
+
+.link {
+  color: #138f5c;
+  text-decoration: none
+}
+
+.link:hover {
+  text-decoration: underline
+}
 
 /* Campos */
-label{display:block; font-weight:600; margin-top:12px; margin-bottom:6px}
-.input{
-  display:flex; align-items:center; gap:8px;
-  background:#fdfefe; border:1px solid var(--border);
-  border-radius:12px; padding:10px 12px;
+label {
+  display: block;
+  font-weight: 600;
+  margin-top: 12px;
+  margin-bottom: 6px
 }
-.input:focus-within{outline:2px solid #bff7dc; border-color:#bff7dc}
-.input input{border:none; outline:none; width:100%; background:transparent; font:inherit; color:inherit}
 
-.error{display:block; color:var(--error); font-size:12px; min-height:16px; margin-top:4px}
+.input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fdfefe;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+
+.input:focus-within {
+  outline: 2px solid #bff7dc;
+  border-color: #bff7dc
+}
+
+.input input {
+  border: none;
+  outline: none;
+  width: 100%;
+  background: transparent;
+  font: inherit;
+  color: inherit
+}
+
+.error {
+  display: block;
+  color: var(--error);
+  font-size: 12px;
+  min-height: 16px;
+  margin-top: 4px
+}
 
 /* Botão */
-.btn{
-  width:100%; margin-top:16px;
-  display:inline-flex; align-items:center; justify-content:center; gap:10px;
-  padding:12px 16px; border-radius:12px; font-weight:700; cursor:pointer;
-  border:1px solid var(--border); background:#fff; color:#2b3; transition:.2s;
+.btn {
+  width: 100%;
+  margin-top: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: #2b3;
+  transition: .2s;
 }
-.btn.primary{background:var(--green); border-color:var(--green); color:#fff}
-.btn:hover{transform:translateY(-1px)}
+
+.btn.primary {
+  background: var(--green);
+  border-color: var(--green);
+  color: #fff
+}
+
+.btn:hover {
+  transform: translateY(-1px)
+}
 
 /* Texto auxiliar */
-.hint{
-  color:var(--muted);
-  font-size:.95rem;
-  margin:12px 0 0;
-  text-align:center;
+.hint {
+  color: var(--muted);
+  font-size: .95rem;
+  margin: 12px 0 0;
+  text-align: center;
 }
 
 /* Responsivo */
-@media (max-width:480px){
-  .title{font-size:24px}
-  .card{padding:20px 16px}
+@media (max-width:480px) {
+  .title {
+    font-size: 24px
+  }
+
+  .card {
+    padding: 20px 16px
+  }
 }
+
 /* ===== imagem decorativa no canto direito (Forgot) ===== */
-body::after{
-  content:"";
-  position: fixed;          /* fica presa ao viewport */
+body::after {
+  content: "";
+  position: fixed;
+  /* fica presa ao viewport */
   right: 0;
   bottom: 0;
   z-index: 0;
   pointer-events: none;
 
   /* tamanho do bloco que carrega a ilustração */
-  width: 32vw;              /* ~um terço da largura */
+  width: 32vw;
+  /* ~um terço da largura */
   max-width: 560px;
   min-width: 320px;
   height: 60vh;
 
   /* imagem */
   background: url("./img/forgot.png") no-repeat right bottom;
-  background-size: contain; /* mantém proporção */
+  background-size: contain;
+  /* mantém proporção */
   /* se quiser mais opaca/clara, ajuste a opacidade: */
-  opacity: 1;               /* 1 = sólida, 0.5 = 50% */
+  opacity: 1;
+  /* 1 = sólida, 0.5 = 50% */
 }
 
 /* garante que o conteúdo fique acima da imagem */
-.page{ position: relative; z-index: 1; }
+.page {
+  position: relative;
+  z-index: 1;
+}
 
 /* responsivo: reduz e some em telas menores */
-@media (max-width: 1200px){
-  body::after{ width: 36vw; height: 50vh; }
+@media (max-width: 1200px) {
+  body::after {
+    width: 36vw;
+    height: 50vh;
+  }
 }
-@media (max-width: 900px){
-  body::after{ display: none; }
+
+@media (max-width: 900px) {
+  body::after {
+    display: none;
+  }
 }
