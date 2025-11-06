@@ -664,3 +664,69 @@ textarea {
 .nav-item.as-button span{
   font-weight:700;
 }
+/* ===== THEME: Light (default) x Dark ===== */
+:root{
+  --text:#16302e;
+}
+body{ color:var(--text); }
+
+/* Escuro: só trocamos variáveis */
+[data-theme="dark"]{
+  --bg:#0f1312;
+  --panel:#131917;
+  --text:#e7f1ef;
+  --muted:#9fb0ac;
+  --border:#24332f;
+  --shadow:0 10px 24px rgba(0,0,0,.35);
+}
+
+/* Ajustes gerais quando escuro */
+[data-theme="dark"] body{ background:var(--bg); }
+[data-theme="dark"] .topbar,
+[data-theme="dark"] .sidebar,
+[data-theme="dark"] .card,
+[data-theme="dark"] .panel,
+[data-theme="dark"] .chart-card,
+[data-theme="dark"] .set-card,
+[data-theme="dark"] .modal-card{
+  background:var(--panel);
+  border-color:var(--border);
+  box-shadow:var(--shadow);
+  color:var(--text);
+}
+
+[data-theme="dark"] .muted{ color:var(--muted); }
+[data-theme="dark"] .tx-table thead th{ background:#19221f; color:var(--muted); }
+[data-theme="dark"] .tx-table tbody td{ border-top:1px solid #1d2a27; }
+[data-theme="dark"] .btn{ background:#141b19; border-color:var(--border); color:var(--text); }
+[data-theme="dark"] .btn:hover{ filter:brightness(1.05); }
+
+[data-theme="dark"] .nav-item{ color:var(--text); }
+[data-theme="dark"] .nav-item i{ color:var(--text); opacity:.9; }
+[data-theme="dark"] .nav-item:hover{ background:#14201c; }
+[data-theme="dark"] .nav-item.active{
+  background:rgba(0,200,111,.10);
+  color:#42e09c;
+}
+[data-theme="dark"] .nav-item.active i{ color:#42e09c; }
+
+[data-theme="dark"] input,
+[data-theme="dark"] select,
+[data-theme="dark"] textarea{
+  background:#101614;
+  color:var(--text);
+  border-color:#263632;
+}
+
+[data-theme="dark"] .modal{ background:rgba(3,6,5,.5); }
+
+/* Botões pílula (claro/escuro) */
+.btn.pill.active{ background:#e6f7ee; color:#0ea564; border-color:#d6f0e4; }
+[data-theme="dark"] .btn.pill.active{
+  background:rgba(0,200,111,.12);
+  color:#42e09c;
+  border-color:transparent;
+}
+
+/* ícone de imagem na sidebar fica ok no dark também */
+[data-theme="dark"] .nav-item .nav-ico{ opacity:1; }
