@@ -22,33 +22,57 @@
     <!-- Navegação por página -->
     <nav class="side-menu">
       <a href="dashboard.html" class="nav-item active">
-        <img class="nav-ico" src="img/dashboard.png" alt="" />
+        <img class="nav-ico"
+             src="img/dashboard.png"
+             data-ico-light="img/dashboard.png"
+             data-ico-dark="img/dashboard-branco.png"
+             alt="">
         <span>Dashboard</span>
       </a>
 
       <a href="transacoes.html" class="nav-item">
-        <img class="nav-ico" src="img/transacoes.png" alt="" />
+        <img class="nav-ico"
+             src="img/transacoes.png"
+             data-ico-light="img/transacoes.png"
+             data-ico-dark="img/transacao-branco.png"
+             alt="">
         <span>Transações</span>
       </a>
 
       <a href="relatorios.html" class="nav-item">
-        <img class="nav-ico" src="img/relatorio.png" alt="" />
+        <img class="nav-ico"
+             src="img/relatorio.png"
+             data-ico-light="img/relatorio.png"
+             data-ico-dark="img/relatorio-branco.png"
+             alt="">
         <span>Relatório</span>
       </a>
 
       <a href="orcamentos.html" class="nav-item">
-        <img class="nav-ico" src="img/orcamentos.png" alt="" />
+        <img class="nav-ico"
+             src="img/orcamentos.png"
+             data-ico-light="img/orcamentos.png"
+             data-ico-dark="img/orcamento-branco.png"
+             alt="">
         <span>Orçamentos</span>
       </a>
 
       <a href="metas.html" class="nav-item">
-        <img class="nav-ico" src="img/metas.png" alt="" />
+        <img class="nav-ico"
+             src="img/metas.png"
+             data-ico-light="img/metas.png"
+             data-ico-dark="img/meta-branco.png"
+             alt="">
         <span>Metas</span>
       </a>
 
       <!-- Configurações: abre uma VIEW local (sem trocar de página) -->
       <button type="button" id="open-settings" class="nav-item as-button">
-        <img class="nav-ico" src="img/configuracao.png" alt="" />
+        <img class="nav-ico"
+             src="img/configuracao.png"
+             data-ico-light="img/configuracao.png"
+             data-ico-dark="img/configuracao-branco.png"
+             alt="">
         <span>Configurações</span>
       </button>
     </nav>
@@ -68,7 +92,9 @@
       <h1 id="page-title">Dashboard</h1>
       <div class="top-actions">
         <a class="btn" id="btn-logout" href="index.html">Sair</a>
-        <button id="btn-new" class="btn btn-green"><i class="ri-add-line"></i> Nova transação</button>
+        <button id="btn-new" class="btn btn-green">
+          <i class="ri-add-line"></i> Nova transação
+        </button>
       </div>
     </header>
 
@@ -76,22 +102,38 @@
     <section class="container" id="dashboard-view">
       <!-- Cards -->
       <div class="cards">
-        <div class="card"><p class="muted">Saldo atual</p><h2 id="balance">R$ 0,00</h2></div>
-        <div class="card"><p class="muted">Receitas do mês</p><h2 id="income">R$ 0,00</h2></div>
-        <div class="card"><p class="muted">Despesas do mês</p><h2 id="expense">R$ 0,00</h2></div>
-        <div class="card"><p class="muted">Transações totais</p><h2 id="count">0</h2></div>
+        <div class="card">
+          <p class="muted">Saldo atual</p>
+          <h2 id="balance">R$ 0,00</h2>
+        </div>
+        <div class="card">
+          <p class="muted">Receitas do mês</p>
+          <h2 id="income">R$ 0,00</h2>
+        </div>
+        <div class="card">
+          <p class="muted">Despesas do mês</p>
+          <h2 id="expense">R$ 0,00</h2>
+        </div>
+        <div class="card">
+          <p class="muted">Transações totais</p>
+          <h2 id="count">0</h2>
+        </div>
       </div>
 
       <!-- Gráficos -->
       <div class="charts-row">
         <div class="chart-card">
           <h3>Evolução Mensal</h3>
-          <div class="chart-wrapper"><canvas id="lineChart"></canvas></div>
+          <div class="chart-wrapper">
+            <canvas id="lineChart"></canvas>
+          </div>
         </div>
 
         <div class="chart-card">
           <h3>Gasto por Categoria</h3>
-          <div class="chart-wrapper"><canvas id="pieChart"></canvas></div>
+          <div class="chart-wrapper">
+            <canvas id="pieChart"></canvas>
+          </div>
         </div>
       </div>
 
@@ -103,7 +145,13 @@
         </div>
         <table class="tx-table">
           <thead>
-            <tr><th>Data</th><th>Descrição</th><th>Categoria</th><th class="right">Valor</th><th></th></tr>
+            <tr>
+              <th>Data</th>
+              <th>Descrição</th>
+              <th>Categoria</th>
+              <th class="right">Valor</th>
+              <th></th>
+            </tr>
           </thead>
           <tbody id="tx-body"></tbody>
         </table>
@@ -116,21 +164,33 @@
       </div>
     </section>
 
-    <!-- VIEW: CONFIGURAÇÕES (aparece só quando clicar no botão da sidebar) -->
+    <!-- VIEW: CONFIGURAÇÕES -->
     <section class="container hidden" id="settings-view">
       <h1 class="settings-title">Configurações</h1>
 
       <div class="settings-grid">
         <!-- Coluna Esquerda -->
         <div class="settings-col">
-          <!-- Perfil -->
+          <!-- PERFIL -->
           <div class="set-card">
             <div class="set-card-head">
-              <div class="avatar">AS</div>
+              <!-- Avatar clicável -->
+              <div class="avatar" id="avatar-trigger">AS</div>
+
               <div>
                 <h3>Perfil</h3>
                 <p class="muted">Atualize suas informações de perfil.</p>
               </div>
+            </div>
+
+            <!-- Picker de avatares (somente imagens, sem texto) -->
+            <div class="avatar-picker hidden" id="avatar-picker">
+              <img src="img/av1.png" data-avatar="img/av1.png" alt="">
+              <img src="img/av2.png" data-avatar="img/av2.png" alt="">
+              <img src="img/av3.png" data-avatar="img/av3.png" alt="">
+              <img src="img/av4.png" data-avatar="img/av4.png" alt="">
+              <img src="img/av5.png" data-avatar="img/av5.png" alt="">
+              <img src="img/av6.png" data-avatar="img/av6.png" alt="">
             </div>
 
             <label>Nome</label>
@@ -172,11 +232,11 @@
             <p class="muted">Escolha entre o tema claro ou escuro.</p>
             <div class="row gap">
               <button type="button" id="theme-light" class="btn pill active">Claro</button>
-              <button type="button" id="theme-dark"  class="btn pill">Escuro</button>
+              <button type="button" id="theme-dark" class="btn pill">Escuro</button>
             </div>
           </div>
 
-          <!-- Moeda (sem idioma) -->
+          <!-- Moeda -->
           <div class="set-card">
             <h3>Moeda</h3>
             <p class="muted">Defina sua moeda para formatar os valores.</p>
@@ -195,20 +255,28 @@
           <div class="set-card side-card">
             <div class="side-head">
               <h3>Integração com Bot</h3>
-              <div class="status"><span class="dot"></span> Status: <b>Conectado</b></div>
+              <div class="status">
+                <span class="dot"></span> Status: <b>Conectado</b>
+              </div>
             </div>
 
             <label>Comandos Automáticos</label>
-            <textarea rows="6" id="bot-commands" placeholder="mercado 100&#10;salario 2500&#10;aluguel 1200"></textarea>
+            <textarea rows="6" id="bot-commands"
+              placeholder="mercado 100&#10;salario 2500&#10;aluguel 1200"></textarea>
 
             <div class="row gap">
-              <button id="btn-generate-token" class="btn btn-green">Gerar token de conexão</button>
+              <button id="btn-generate-token" class="btn btn-green">
+                Gerar token de conexão
+              </button>
             </div>
 
             <label style="margin-top:10px">Token</label>
             <div class="token-box">
-              <input id="bot-token" type="text" readonly value="••••••••••••••••••••••" />
-              <button id="copy-token" class="icon-btn" title="Copiar"><i class="ri-clipboard-line"></i></button>
+              <input id="bot-token" type="text" readonly
+                     value="••••••••••••••••••••••" />
+              <button id="copy-token" class="icon-btn" title="Copiar">
+                <i class="ri-clipboard-line"></i>
+              </button>
             </div>
           </div>
         </div>
@@ -221,7 +289,9 @@
     <div class="modal-card">
       <header>
         <h3>Nova transação</h3>
-        <button id="close-modal" class="icon-btn"><i class="ri-close-line"></i></button>
+        <button id="close-modal" class="icon-btn">
+          <i class="ri-close-line"></i>
+        </button>
       </header>
 
       <form id="form-tx">
@@ -241,7 +311,8 @@
         </select>
 
         <label>Valor (R$)</label>
-        <input id="tx-value" type="number" step="0.01" placeholder="0.00" required />
+        <input id="tx-value" type="number" step="0.01"
+               placeholder="0.00" required />
 
         <div class="modal-actions">
           <button type="button" id="cancel" class="btn">Cancelar</button>
