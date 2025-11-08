@@ -1,38 +1,52 @@
 :root {
+  /* Tema CLARO */
   --green: #00C86F;
+
   --bg: #F5F7F8;
-  --panel: #fff;
+  --panel: #ffffff;
+  --text: #172d2a;
   --muted: #7a8a8a;
   --border: #e7efed;
-  --shadow: 0 8px 24px rgba(12, 30, 14, .06);
+  --shadow: 0 8px 24px rgba(12, 30, 14, 0.06);
+}
+
+/* Tema ESCURO (controlado via theme.js no <html>) */
+[data-theme="dark"] {
+  --bg: #0f1312;
+  --panel: #111716;
+  --text: #e7f1ef;
+  --muted: #9fb0ac;
+  --border: #24332f;
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
 }
 
 * {
-  box-sizing: border-box
+  box-sizing: border-box;
 }
 
 html,
 body {
-  margin: 0
+  margin: 0;
 }
 
 body {
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
   background: var(--bg);
-  color: #172d2a
+  color: var(--text);
 }
 
-/* appbar */
+/* ============ APPBAR ============ */
+
 .appbar {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: #fff;
-  border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 18px
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--border);
+  background: var(--panel);
 }
 
 .brand {
@@ -40,45 +54,63 @@ body {
   align-items: center;
   gap: 10px;
   text-decoration: none;
-  color: #122
+  color: var(--text);
 }
 
-.logo {
+/* Logo nova */
+.brand .logo-img {
   width: 28px;
   height: 28px;
-  background: var(--green);
-  border-radius: 8px
+  object-fit: contain;
+  display: block;
+}
+
+/* Esconde quadradinho .logo, se existir */
+.brand .logo {
+  display: none;
 }
 
 .tabs {
   display: flex;
-  gap: 22px
+  gap: 22px;
 }
 
 .tabs a {
-  color: #475957;
+  color: var(--muted);
   text-decoration: none;
-  font-weight: 600
+  font-weight: 600;
+  transition: color 0.15s ease;
+}
+
+.tabs a:hover {
+  color: var(--text);
 }
 
 .tabs a.active {
-  color: var(--green)
+  color: var(--green);
 }
 
 .btn-out {
-  background: #f3f7f6;
+  background: var(--bg);
   border: 1px solid var(--border);
   padding: 8px 12px;
   border-radius: 10px;
   text-decoration: none;
-  color: #2a3
+  color: var(--green);
+  font-weight: 600;
+  transition: background 0.15s ease, filter 0.15s ease;
 }
 
-/* layout */
+.btn-out:hover {
+  filter: brightness(0.97);
+}
+
+/* ============ CONTEÚDO ============ */
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 22px 18px 64px
+  padding: 22px 18px 64px;
 }
 
 .page-head {
@@ -87,53 +119,69 @@ body {
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
-  margin-bottom: 18px
+  margin-bottom: 18px;
 }
 
 .page-head h1 {
   margin: 0;
-  font-size: 36px
+  font-size: 36px;
+  color: var(--text);
 }
 
 .muted {
-  color: var(--muted)
+  color: var(--muted);
 }
 
+/* Botões gerais */
+
 .btn {
-  background: #fff;
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 10px 14px;
-  cursor: pointer
+  cursor: pointer;
+  background: var(--panel);
+  color: var(--text);
+  font-family: inherit;
+  font-weight: 500;
+  transition: background 0.15s ease, filter 0.15s ease;
+}
+
+.btn:hover {
+  filter: brightness(0.98);
 }
 
 .btn-green {
   background: var(--green);
-  color: #fff;
-  border: none;
-  font-weight: 600
+  color: #ffffff;
+  border-color: transparent;
+  font-weight: 600;
 }
 
-/* grid de metas */
+.btn-green:hover {
+  filter: brightness(1.02);
+}
+
+/* ============ GRID DE METAS ============ */
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 18px
+  gap: 18px;
 }
 
 .goal-card {
-  background: #fff;
+  background: var(--panel);
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 18px;
-  box-shadow: var(--shadow)
+  box-shadow: var(--shadow);
 }
 
 .goal-head {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 10px
+  margin-bottom: 10px;
 }
 
 .goal-icon {
@@ -144,16 +192,23 @@ body {
   height: 40px;
   display: grid;
   place-items: center;
-  color: #0ea564
+  color: #0ea564;
+}
+
+/* Ajuste no dark pra não ficar estourado */
+[data-theme="dark"] .goal-icon {
+  background: #14201b;
+  color: #42e09c;
 }
 
 .goal-title {
   margin: 0;
-  font-size: 18px
+  font-size: 18px;
+  color: var(--text);
 }
 
 .goal-actions {
-  margin-left: auto
+  margin-left: auto;
 }
 
 .action {
@@ -161,24 +216,27 @@ body {
   border: none;
   cursor: pointer;
   padding: 6px;
-  border-radius: 8px
+  border-radius: 8px;
+  color: var(--muted);
+  transition: background 0.15s ease, color 0.15s ease;
 }
 
 .action:hover {
-  background: #f3f7f6
+  background: rgba(0, 0, 0, 0.03);
+  color: var(--text);
 }
 
 .label {
   font-size: 12px;
-  color: #6d7e7b;
-  margin-bottom: 8px
+  color: var(--muted);
+  margin-bottom: 8px;
 }
 
 .values {
   display: flex;
   justify-content: space-between;
   font-size: 14px;
-  color: #475
+  color: var(--text);
 }
 
 .progress {
@@ -186,75 +244,96 @@ body {
   background: #edf5f3;
   border-radius: 8px;
   overflow: hidden;
-  margin: 6px 0 2px
+  margin: 6px 0 2px;
+}
+
+/* Fundo da barra em dark */
+[data-theme="dark"] .progress {
+  background: #16201d;
 }
 
 .progress-inner {
   height: 10px;
   border-radius: 8px;
-  background: #00b070;
-  transition: width .3s
+  background: var(--green);
+  transition: width 0.3s;
 }
 
 .percent {
   font-weight: 700;
-  color: #00a060
+  color: #00a060;
 }
 
-/* vazio */
+/* ============ ESTADO VAZIO ============ */
+
 .empty {
-  margin-top: 24px
+  margin-top: 24px;
 }
 
 .empty-card {
-  border: 2px dashed #dfe9e6;
+  border: 2px dashed var(--border);
   border-radius: 16px;
   padding: 40px;
   text-align: center;
-  background: #f9fcfb
+  background: #f9fcfb;
+  color: var(--muted);
+}
+
+/* Dark para vazio */
+[data-theme="dark"] .empty-card {
+  background: #101816;
 }
 
 .flag {
   font-size: 32px;
-  color: #00b070;
-  margin-bottom: 6px
+  color: var(--green);
+  margin-bottom: 6px;
 }
 
 .hidden {
-  display: none !important
+  display: none !important;
 }
 
-/* modal */
+/* ============ MODAL ============ */
+
 .modal {
   position: fixed;
   inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, .35);
-  z-index: 50
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 50;
 }
 
 .modal-card {
-  background: #fff;
+  background: var(--panel);
+  color: var(--text);
   border: 1px solid var(--border);
   border-radius: 16px;
   box-shadow: var(--shadow);
   padding: 20px;
-  width: min(420px, 92vw)
+  width: min(420px, 92vw);
 }
 
 .modal-card header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px
+  margin-bottom: 10px;
+}
+
+.modal-card h3 {
+  margin: 0;
+  font-size: 18px;
 }
 
 .modal-card label {
   display: block;
   margin-top: 10px;
-  font-weight: 600
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--muted);
 }
 
 .modal-card input,
@@ -263,32 +342,36 @@ body {
   padding: 10px 12px;
   border-radius: 10px;
   border: 1px solid var(--border);
-  margin-top: 6px
+  margin-top: 6px;
+  background: var(--panel);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 14px;
 }
 
 .modal-actions {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
-  margin-top: 14px
+  margin-top: 14px;
 }
 
 .icon-btn {
   background: none;
   border: none;
   font-size: 20px;
-  cursor: pointer
+  cursor: pointer;
+  color: var(--muted);
 }
 
-/* ===== LOGO NA APPBAR ===== */
-.brand .logo-img {
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-  display: block;
+.icon-btn:hover {
+  color: var(--text);
 }
 
-/* esconde o quadradinho .logo, se ainda estiver no HTML */
-.brand .logo {
-  display: none;
+/* ============ RESPONSIVO ============ */
+
+@media (max-width: 720px) {
+  .page-head {
+    align-items: flex-start;
+  }
 }

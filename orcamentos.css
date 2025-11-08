@@ -1,80 +1,116 @@
 :root {
+  /* Tema CLARO */
   --green: #00C86F;
+
   --bg: #F5F7F8;
-  --panel: #fff;
+  --panel: #ffffff;
+  --text: #122222;
   --muted: #7a8a8a;
   --border: #e7efed;
-  --shadow: 0 8px 24px rgba(12, 30, 14, .06);
+  --shadow: 0 8px 24px rgba(12, 30, 14, 0.06);
+}
+
+/* Tema ESCURO (setado pelo theme.js no <html>) */
+[data-theme="dark"] {
+  --bg: #0f1312;
+  --panel: #111716;
+  --text: #e7f1ef;
+  --muted: #9fb0ac;
+  --border: #24332f;
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
 }
 
 * {
-  box-sizing: border-box
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
 }
 
 body {
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
   background: var(--bg);
-  margin: 0;
-  color: #122
+  color: var(--text);
 }
 
-/* header */
+/* ============ APPBAR ============ */
+
 .appbar {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: #fff;
-  border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 12px 18px;
+  border-bottom: 1px solid var(--border);
+  background: var(--panel);
 }
 
 .brand {
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #122;
-  text-decoration: none
+  color: var(--text);
+  text-decoration: none;
 }
 
-.logo {
+/* Logo nova */
+.brand .logo-img {
   width: 28px;
   height: 28px;
-  border-radius: 8px;
-  background: var(--green)
+  object-fit: contain;
+  display: block;
+}
+
+/* Esconde quadradinho antigo, se tiver */
+.brand .logo {
+  display: none;
 }
 
 .tabs {
   display: flex;
-  gap: 22px
+  gap: 22px;
 }
 
 .tabs a {
-  color: #475957;
+  color: var(--muted);
   text-decoration: none;
-  font-weight: 600
+  font-weight: 600;
+  transition: color 0.15s ease;
+}
+
+.tabs a:hover {
+  color: var(--text);
 }
 
 .tabs a.active {
-  color: var(--green)
+  color: var(--green);
 }
 
 .btn-out {
-  background: #f3f7f6;
+  background: var(--bg);
   border: 1px solid var(--border);
   padding: 8px 12px;
   border-radius: 10px;
-  color: #2a3;
-  text-decoration: none
+  color: var(--green);
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.15s ease, filter 0.15s ease;
 }
 
-/* main */
+.btn-out:hover {
+  filter: brightness(0.97);
+}
+
+/* ============ CONTEÚDO ============ */
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 22px 18px 64px
+  padding: 22px 18px 64px;
 }
 
 .page-head {
@@ -82,38 +118,55 @@ body {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  margin-bottom: 18px
+  gap: 10px;
+  margin-bottom: 18px;
 }
 
 .page-head h1 {
   margin: 0;
-  font-size: 36px
+  font-size: 36px;
+  color: var(--text);
 }
 
 .muted {
-  color: var(--muted)
+  color: var(--muted);
 }
 
+/* Botão genérico */
+
 .btn {
-  background: #fff;
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 10px 14px;
-  cursor: pointer
+  cursor: pointer;
+  background: var(--panel);
+  color: var(--text);
+  font-weight: 500;
+  font-family: inherit;
+  transition: background 0.15s ease, filter 0.15s ease;
+}
+
+.btn:hover {
+  filter: brightness(0.98);
 }
 
 .btn-green {
   background: var(--green);
-  color: #fff;
-  border: none;
-  font-weight: 600
+  color: #ffffff;
+  border-color: transparent;
+  font-weight: 600;
 }
 
-/* grid */
+.btn-green:hover {
+  filter: brightness(1.02);
+}
+
+/* ============ GRID / CARDS DE ORÇAMENTO ============ */
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 18px
+  gap: 18px;
 }
 
 .card {
@@ -132,7 +185,14 @@ body {
   font-size: 18px;
   display: flex;
   align-items: center;
-  gap: 8px
+  gap: 8px;
+  color: var(--text);
+}
+
+.card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
 }
 
 .card .progress {
@@ -142,10 +202,16 @@ body {
   overflow: hidden;
 }
 
+/* Fundo da barra em dark um pouco mais escuro */
+[data-theme="dark"] .card .progress {
+  background: #16201d;
+}
+
 .card .progress-inner {
   height: 8px;
   border-radius: 6px;
-  transition: width .3s;
+  background: var(--green);
+  transition: width 0.3s;
 }
 
 .card .values {
@@ -153,42 +219,45 @@ body {
   justify-content: space-between;
   align-items: center;
   font-size: 14px;
-  color: #475
+  color: var(--text);
 }
 
 .percent {
-  font-weight: 600
+  font-weight: 600;
 }
 
 .percent.green {
-  color: #00a060
+  color: #00a060;
 }
 
 .percent.yellow {
-  color: #e9a600
+  color: #e9a600;
 }
 
 .percent.red {
-  color: #e74c3c
+  color: #e74c3c;
 }
 
-/* modal */
+/* ============ MODAL ============ */
+
 .modal {
   position: fixed;
   inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, .35);
+  background: rgba(0, 0, 0, 0.35);
   z-index: 50;
 }
 
 .modal.hidden {
-  display: none
+  display: none;
 }
 
 .modal-card {
-  background: #fff;
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
   border-radius: 16px;
   padding: 22px;
   width: 340px;
@@ -199,36 +268,58 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px
+  margin-bottom: 12px;
 }
 
 .modal-card h3 {
-  margin: 0
+  margin: 0;
+  font-size: 18px;
+}
+
+.modal-card label {
+  display: block;
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.modal-card input,
+.modal-card select {
+  width: 100%;
+  margin-top: 6px;
+  padding: 9px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 14px;
 }
 
 .modal-actions {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
-  margin-top: 16px
+  margin-top: 16px;
 }
 
 .icon-btn {
   background: none;
   border: none;
   font-size: 20px;
-  cursor: pointer
+  cursor: pointer;
+  color: var(--muted);
 }
 
-/* ===== LOGO NA APPBAR ===== */
-.brand .logo-img {
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-  display: block;
+.icon-btn:hover {
+  color: var(--text);
 }
 
-/* se o quadradinho .logo ainda existir, esconde */
-.brand .logo {
-  display: none;
+/* ============ RESPONSIVO ============ */
+
+@media (max-width: 720px) {
+  .page-head {
+    align-items: flex-start;
+  }
 }

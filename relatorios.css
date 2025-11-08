@@ -1,84 +1,116 @@
 :root {
+  /* Tema CLARO (sem data-theme="dark") */
   --green: #00C86F;
+
   --bg: #F5F7F8;
-  --panel: #fff;
+  --panel: #ffffff;
+  --text: #172d2a;
   --muted: #7a8a8a;
   --border: #e7efed;
   --shadow: 0 8px 24px rgba(12, 30, 14, .06);
 }
 
+/* Tema ESCURO (quando theme.js coloca data-theme="dark" no <html>) */
+[data-theme="dark"] {
+  --bg: #0f1312;
+  --panel: #111716;
+  --text: #e7f1ef;
+  --muted: #9fb0ac;
+  --border: #24332f;
+  --shadow: 0 8px 24px rgba(0, 0, 0, .35);
+}
+
 * {
-  box-sizing: border-box
+  box-sizing: border-box;
 }
 
 html,
 body {
-  margin: 0
+  margin: 0;
 }
 
 body {
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
   background: var(--bg);
-  color: #172d2a
+  color: var(--text);
 }
 
-/* Appbar */
+/* ===================== APPBAR ===================== */
+
 .appbar {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: #fff;
   border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 12px 18px;
+  background: var(--panel);
 }
 
 .brand {
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #122;
-  text-decoration: none
+  color: var(--text);
+  text-decoration: none;
 }
 
-.logo {
+/* logo PNG nova */
+.brand .logo-img {
   width: 28px;
   height: 28px;
-  border-radius: 8px;
-  background: var(--green)
+  object-fit: contain;
+  display: block;
+}
+
+/* esconde quadradinho antigo se existir */
+.brand .logo {
+  display: none;
 }
 
 .tabs {
   display: flex;
-  gap: 22px
+  gap: 22px;
 }
 
 .tabs a {
-  color: #475957;
+  color: var(--muted);
   text-decoration: none;
-  font-weight: 600
+  font-weight: 600;
+  transition: color .15s ease;
+}
+
+.tabs a:hover {
+  color: var(--text);
 }
 
 .tabs a.active {
-  color: var(--green)
+  color: var(--green);
 }
 
 .btn-out {
-  background: #f3f7f6;
+  background: var(--bg);
   border: 1px solid var(--border);
   padding: 8px 12px;
   border-radius: 10px;
-  color: #2a3;
-  text-decoration: none
+  color: var(--green);
+  text-decoration: none;
+  font-weight: 600;
+  transition: filter .15s ease, background .15s ease;
 }
 
-/* Container */
+.btn-out:hover {
+  filter: brightness(.98);
+}
+
+/* ===================== CONTAINER / PAGE HEAD ===================== */
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 22px 18px 64px
+  padding: 22px 18px 64px;
 }
 
 .page-head {
@@ -86,47 +118,58 @@ body {
   justify-content: space-between;
   align-items: flex-end;
   gap: 14px;
-  margin-bottom: 16px
+  margin-bottom: 16px;
 }
 
 .page-head h1 {
   margin: 0 0 6px;
-  font-size: 36px
+  font-size: 36px;
+  color: var(--text);
 }
 
 .muted {
-  color: var(--muted)
+  color: var(--muted);
 }
+
+/* ===================== FILTROS ===================== */
 
 .filters {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-  align-items: center
+  align-items: center;
 }
 
 .filters select,
 .filters input,
 .btn {
-  background: #fff;
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 10px 12px;
-  cursor: pointer
+  cursor: pointer;
+  background: var(--panel);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.filters input::placeholder {
+  color: var(--muted);
 }
 
 .date-pair {
   display: flex;
   align-items: center;
-  gap: 8px
+  gap: 8px;
 }
 
-/* Cards */
+/* ===================== CARDS RESUMO ===================== */
+
 .cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
-  margin: 16px 0
+  margin: 16px 0;
 }
 
 .card {
@@ -134,21 +177,23 @@ body {
   border: 1px solid var(--border);
   border-radius: 14px;
   box-shadow: var(--shadow);
-  padding: 16px
+  padding: 16px;
 }
 
 .card p.muted {
   margin: 0;
   color: var(--muted);
-  font-size: 13px
+  font-size: 13px;
 }
 
 .card h2 {
   margin: 6px 0 0;
-  font-size: 22px
+  font-size: 22px;
+  color: var(--text);
 }
 
-/* Charts */
+/* ===================== GRÁFICOS ===================== */
+
 .charts-row {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
@@ -157,84 +202,94 @@ body {
 }
 
 .chart-card {
-  background: #fff;
+  background: var(--panel);
   border: 1px solid var(--border);
   border-radius: 14px;
   box-shadow: var(--shadow);
-  padding: 16px
+  padding: 16px;
+}
+
+.chart-card h3 {
+  margin: 0 0 8px;
+  font-size: 15px;
+  color: var(--text);
 }
 
 .chart-wrapper {
   position: relative;
   width: 100%;
-  height: 260px
+  height: 260px;
 }
 
 .chart-wrapper canvas {
   width: 100% !important;
   height: 100% !important;
-  display: block
+  display: block;
 }
 
-/* Panel table */
+/* ===================== PAINEL / TABELA ===================== */
+
 .panel {
-  background: #fff;
+  background: var(--panel);
   border: 1px solid var(--border);
   border-radius: 14px;
   box-shadow: var(--shadow);
-  padding: 16px
+  padding: 16px;
+  margin-top: 8px;
 }
 
 .panel-head {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px
+  margin-bottom: 8px;
+}
+
+.panel-head h3 {
+  margin: 0;
+  font-size: 16px;
+  color: var(--text);
 }
 
 .tx-table {
   width: 100%;
-  border-collapse: collapse
+  border-collapse: collapse;
+  color: var(--text);
 }
 
 .tx-table thead th {
   font-size: 12px;
   letter-spacing: .2px;
-  color: #6b7;
+  color: var(--muted);
   text-align: left;
   padding: 14px 16px;
-  background: #f7fbf9
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
 }
 
 .tx-table tbody td {
   padding: 14px 16px;
-  border-top: 1px solid #f0f3f2
+  border-top: 1px solid var(--border);
 }
 
 .right {
-  text-align: right
+  text-align: right;
 }
 
-/* Responsive */
-@media (max-width:980px) {
+/* mensagem vazia */
+.tx-table tbody tr.empty td {
+  text-align: center;
+  color: var(--muted);
+}
+
+/* ===================== RESPONSIVO ===================== */
+
+@media (max-width: 980px) {
   .charts-row {
-    grid-template-columns: 1fr
+    grid-template-columns: 1fr;
   }
 
   .cards {
-    grid-template-columns: 1fr
+    grid-template-columns: 1fr;
   }
-}
-
-/* ===== LOGO NA APPBAR ===== */
-.brand .logo-img {
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-  display: block;
-}
-
-/* esconde o quadradinho antigo caso exista */
-.brand .logo {
-  display: none;
 }

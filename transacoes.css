@@ -1,87 +1,118 @@
 :root {
+  /* Tema CLARO (default quando NÃO existe data-theme="dark") */
   --green: #00C86F;
   --green-2: #0ea564;
+
   --bg: #F5F7F8;
-  --panel: #fff;
+  --panel: #ffffff;
+  --text: #172d2a;
   --muted: #7a8a8a;
   --border: #e7efed;
   --shadow: 0 8px 24px rgba(12, 30, 14, .06);
   --radius: 14px;
 }
 
+/* Tema ESCURO (quando theme.js seta data-theme="dark" no <html>) */
+[data-theme="dark"] {
+  --bg: #0f1312;
+  --panel: #111716;
+  --text: #e7f1ef;
+  --muted: #9fb0ac;
+  --border: #24332f;
+  --shadow: 0 8px 24px rgba(0, 0, 0, .35);
+}
+
 * {
-  box-sizing: border-box
+  box-sizing: border-box;
 }
 
 html,
 body {
-  margin: 0
+  margin: 0;
 }
 
 body {
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
   background: var(--bg);
-  color: #172d2a
+  color: var(--text);
 }
 
-/* Appbar */
+/* ===================== APPBAR ===================== */
+
 .appbar {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: #fff;
   border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 12px 18px;
+  background: var(--panel);
 }
 
 .brand {
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #122;
-  text-decoration: none
+  color: var(--text);
+  text-decoration: none;
 }
 
-.logo {
+/* logo do PNG novo */
+.brand .logo-img {
   width: 28px;
   height: 28px;
-  border-radius: 8px;
-  background: var(--green)
+  object-fit: contain;
+  display: block;
+}
+
+/* esconde qualquer quadradinho antigo */
+.brand .logo {
+  display: none;
 }
 
 .tabs {
   display: flex;
-  gap: 22px
+  gap: 22px;
 }
 
 .tabs a {
-  color: #2a3;
   text-decoration: none;
-  color: #475957;
-  font-weight: 600
+  font-weight: 600;
+  color: var(--muted);
+  transition: color .15s ease;
+}
+
+.tabs a:hover {
+  color: var(--text);
 }
 
 .tabs a.active {
-  color: var(--green)
+  color: var(--green);
 }
 
 .btn-out {
-  background: #f3f7f6;
+  background: var(--bg);
   border: 1px solid var(--border);
   padding: 8px 12px;
   border-radius: 10px;
-  color: #2a3;
-  text-decoration: none
+  color: var(--green-2);
+  text-decoration: none;
+  font-weight: 600;
+  transition: filter .15s ease, background .15s ease;
 }
 
-/* Page head */
+.btn-out:hover {
+  filter: brightness(.98);
+}
+
+/* ===================== CONTAINER / PAGE HEAD ===================== */
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 22px 18px 64px
+  padding: 22px 18px 64px;
 }
 
 .page-head {
@@ -89,122 +120,142 @@ body {
   justify-content: space-between;
   align-items: flex-end;
   gap: 14px;
-  margin-bottom: 16px
+  margin-bottom: 16px;
 }
 
 .page-head h1 {
   margin: 0 0 6px;
-  font-size: 36px
+  font-size: 36px;
+  color: var(--text);
 }
 
 .muted {
-  color: var(--muted)
+  color: var(--muted);
 }
 
 .filters {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-  align-items: center
+  align-items: center;
 }
 
 .filters select,
 .filters input {
-  background: #fff;
   border: 1px solid var(--border);
   border-radius: 10px;
-  padding: 10px 12px
+  padding: 10px 12px;
+  background: var(--panel);
+  color: var(--text);
+}
+
+.filters input::placeholder {
+  color: var(--muted);
 }
 
 .date-pair {
   display: flex;
   align-items: center;
-  gap: 8px
+  gap: 8px;
 }
 
-/* Card tabela */
+/* ===================== TABELA ===================== */
+
 .table-card {
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: 16px;
   box-shadow: var(--shadow);
-  overflow: hidden
+  overflow: hidden;
 }
 
 .tx-table {
   width: 100%;
-  border-collapse: collapse
+  border-collapse: collapse;
+  color: var(--text);
 }
 
 .tx-table thead th {
   font-size: 12px;
   letter-spacing: .2px;
-  color: #6b7;
+  color: var(--muted);
   text-align: left;
   padding: 14px 16px;
-  background: #f7fbf9
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
 }
 
 .tx-table tbody td {
   padding: 16px;
-  border-top: 1px solid #f0f3f2
+  border-top: 1px solid var(--border);
 }
 
 .tx-table .right {
-  text-align: right
+  text-align: right;
 }
 
 .tx-table .center {
-  text-align: center
+  text-align: center;
 }
+
+/* mensagem vazia */
+.tx-table tbody tr.empty td {
+  text-align: center;
+  color: var(--muted);
+}
+
+/* ===================== BADGES / VALORES ===================== */
 
 .badge {
   display: inline-block;
   padding: 6px 10px;
   border-radius: 999px;
   font-weight: 700;
-  font-size: 12px
+  font-size: 12px;
 }
 
 .badge.cat {
   background: #eef6ff;
-  color: #2d5a9c
+  color: #2d5a9c;
 }
 
 .badge.income {
   background: #e6f7ee;
-  color: #0a8f4d
+  color: #0a8f4d;
 }
 
 .badge.expense {
   background: #ffefef;
-  color: #d64a4a
+  color: #d64a4a;
 }
 
 .value.income {
   color: #0a8f4d;
-  font-weight: 700
+  font-weight: 700;
 }
 
 .value.expense {
   color: #d64a4a;
-  font-weight: 700
+  font-weight: 700;
 }
 
-/* Ações */
+/* ===================== AÇÕES ===================== */
+
 .action {
   border: none;
   background: transparent;
   cursor: pointer;
   padding: 6px;
-  border-radius: 8px
+  border-radius: 8px;
+  transition: background .15s ease;
 }
 
 .action:hover {
-  background: #f3f8f6
+  background: rgba(255, 255, 255, 0.03);
 }
 
-/* FAB */
+/* ===================== FAB ===================== */
+
 .fab {
   position: fixed;
   right: 24px;
@@ -215,46 +266,52 @@ body {
   border: none;
   background: var(--green);
   color: #fff;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, .12);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .22);
   cursor: pointer;
   display: grid;
   place-items: center;
   font-size: 22px;
+  transition: transform .15s ease, box-shadow .15s ease;
 }
 
 .fab:hover {
-  transform: translateY(-1px)
+  transform: translateY(-1px);
+  box-shadow: 0 14px 26px rgba(0, 0, 0, .28);
 }
 
-/* Modal */
+/* ===================== MODAL ===================== */
+
 .modal {
   position: fixed;
   inset: 0;
   display: grid;
   place-items: center;
-  background: rgba(12, 18, 14, .28)
+  background: rgba(0, 0, 0, .45);
+  z-index: 80;
 }
 
 .modal-card {
   width: min(480px, 92vw);
-  background: #fff;
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 18px;
-  box-shadow: var(--shadow)
+  box-shadow: var(--shadow);
+  background: var(--panel);
+  color: var(--text);
 }
 
 .modal-card header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px
+  margin-bottom: 10px;
 }
 
 .modal-card label {
   display: block;
   margin-top: 10px;
-  font-weight: 600
+  font-weight: 600;
+  color: var(--text);
 }
 
 .modal-card input,
@@ -263,28 +320,40 @@ body {
   padding: 10px 12px;
   border-radius: 10px;
   border: 1px solid var(--border);
-  margin-top: 6px
+  margin-top: 6px;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.modal-card input::placeholder {
+  color: var(--muted);
 }
 
 .modal-actions {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
-  margin-top: 12px
+  margin-top: 12px;
 }
 
 .btn {
   padding: 10px 14px;
   border-radius: 10px;
   border: 1px solid var(--border);
-  background: #fff;
-  cursor: pointer
+  cursor: pointer;
+  background: var(--panel);
+  color: var(--text);
+  font-weight: 500;
 }
 
 .btn.btn-green {
   background: var(--green);
   color: #fff;
-  border-color: transparent
+  border-color: transparent;
+}
+
+.btn.btn-green:hover {
+  filter: brightness(1.02);
 }
 
 .icon-btn {
@@ -292,47 +361,36 @@ body {
   border: none;
   cursor: pointer;
   padding: 6px;
-  border-radius: 8px
+  border-radius: 8px;
+  color: var(--muted);
 }
 
+/* ===================== HELPERS ===================== */
+
 .hidden {
-  display: none !important
+  display: none !important;
 }
 
 /* Responsivo */
-@media (max-width:720px) {
+@media (max-width: 720px) {
   .page-head {
     flex-direction: column;
-    align-items: flex-start
+    align-items: flex-start;
   }
 }
 
-.btn-out,
+/* Botão sair reaproveitado */
 .top-actions .btn {
   padding: 8px 12px;
   border-radius: 10px;
   border: 1px solid var(--border);
-  background: #f3f7f6;
-  color: #2a3;
+  background: var(--bg);
+  color: var(--green-2);
   text-decoration: none;
   font-weight: 600;
+  transition: filter .15s ease;
 }
 
-.btn-out:hover,
 .top-actions .btn:hover {
-  filter: brightness(0.98);
-}
-
-/* ===== LOGO NA APPBAR ===== */
-.brand .logo-img {
-  width: 28px;
-  /* combina com o layout do dashboard */
-  height: 28px;
-  object-fit: contain;
-  display: block;
-}
-
-/* se existir o quadradinho antigo .logo, esconda (safe) */
-.brand .logo {
-  display: none;
+  filter: brightness(.98);
 }

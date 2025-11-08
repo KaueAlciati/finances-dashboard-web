@@ -1,0 +1,112 @@
+:root {
+  --green: #00C86F;
+
+  /* Light (default) */
+  --bg: #F5F7F8;
+  --panel: #ffffff;
+  --text: #16302e;
+  --muted: #7d8a8a;
+  --border: #E6F0EE;
+  --shadow: 0 10px 24px rgba(12, 30, 14, 0.06);
+}
+
+/* Quando theme = dark (vem do data-theme no <html>) */
+html[data-theme="dark"] {
+  --bg: #0f1312;
+  --panel: #131917;
+  --text: #e7f1ef;
+  --muted: #9fb0ac;
+  --border: #24332f;
+  --shadow: 0 10px 24px rgba(0,0,0,.35);
+}
+
+/* Base para todas as páginas internas */
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Topo padrão (logo + nav + sair) */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 32px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Logo / brand (funciona p/ qualquer página interna com essa estrutura) */
+header .brand,
+header .logo-area {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+header .brand img,
+header .logo-area img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+/* Menu horizontal interno */
+header nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 0 auto;
+}
+
+header nav a {
+  color: var(--muted);
+  font-weight: 500;
+  font-size: 14px;
+  padding: 6px 0;
+  border-bottom: 2px solid transparent;
+  text-decoration: none;
+  transition: color .2s ease, border-color .2s ease;
+}
+
+header nav a:hover {
+  color: var(--green);
+}
+
+header nav a.active {
+  color: var(--green);
+  font-weight: 600;
+  border-color: var(--green);
+}
+
+/* Botão Sair / logout */
+header .btn-logout,
+header .btn-exit,
+header a[href*="index.html"].btn-exit {
+  padding: 6px 18px;
+  border-radius: 18px;
+  border: 1px solid var(--green);
+  background: #ffffff;
+  color: var(--green);
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Garante contraste no dark */
+html[data-theme="dark"] header .btn-logout,
+html[data-theme="dark"] header .btn-exit,
+html[data-theme="dark"] header a[href*="index.html"].btn-exit {
+  background: #0f1312;
+  color: var(--green);
+  border-color: var(--green);
+}
