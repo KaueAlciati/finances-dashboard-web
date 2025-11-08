@@ -672,3 +672,112 @@ a {
   gap: 10px;
   font-weight: 800;
 }
+
+/* Depoimentos - Carrossel */
+.testimonials-carousel {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.t-window {
+  overflow: hidden;
+  flex: 1;
+}
+
+.t-track {
+  display: flex;
+  gap: 16px;
+  transition: transform .35s ease;
+}
+
+/* cada card agora funciona como "slide" */
+.t-card {
+  min-width: calc(33.333% - 11px); /* 3 por vez no desktop */
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  background: #e8fff2;
+  color: #0f7a3a;
+  font-weight: 800;
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+.role {
+  color: var(--muted);
+  margin: 2px 0 8px;
+}
+
+.t-text {
+  color: #354545;
+}
+
+/* setas do carrossel */
+.t-arrow {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  flex-shrink: 0;
+  transition: .2s;
+}
+
+.t-arrow i {
+  font-size: 20px;
+  color: #3b4a4a;
+}
+
+.t-arrow:hover {
+  background: #e8fff2;
+  border-color: var(--green);
+}
+
+/* bolinhas de navegação */
+.t-dots {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.t-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #cfded7;
+  transition: .2s;
+}
+
+.t-dot.active {
+  width: 20px;
+  background: var(--green);
+}
+
+/* Responsivo: no mobile mostra 1 depoimento por vez */
+@media (max-width: 1100px) {
+  .testimonials-carousel {
+    gap: 8px;
+  }
+
+  .t-card {
+    min-width: 100%;
+  }
+}

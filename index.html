@@ -47,15 +47,16 @@
           </p>
           <div class="hero-actions">
             <a href="login.html" class="btn">Começar Agora</a>
-            <a href="dashboard.html" class="btn ghost">Ver Demo</a>
           </div>
         </div>
 
         <!-- Imagem do painel FinControl -->
         <div class="hero-media" aria-hidden="true">
-          <img src="img/paineldashboard.png"
-               alt="Painel do FinControl mostrando cards, gráficos e controles financeiros"
-               class="hero-img" />
+          <img
+            src="img/paineldashboard.png"
+            alt="Painel do FinControl mostrando cards, gráficos e controles financeiros"
+            class="hero-img"
+          />
         </div>
       </div>
     </section>
@@ -187,33 +188,74 @@
       </div>
     </section>
 
-    <!-- Depoimentos -->
-    <section class="section">
+    <!-- Depoimentos com carrossel -->
+    <section class="section" id="depoimentos">
       <div class="container">
         <h2 class="title center">O que nossos usuários dizem</h2>
 
-        <div class="testimonials">
-          <article class="t-card">
-            <div class="avatar circle">JD</div>
-            <h4>João Dias</h4>
-            <p class="role">CEO, TechCorp</p>
-            <p class="t-text">“O FinControl revolucionou a forma como gerimos as finanças. Simples, poderoso e com ótimo suporte.”</p>
-          </article>
+        <div class="testimonials-carousel">
+          <button class="t-arrow t-prev" aria-label="Depoimento anterior">
+            <i class="ri-arrow-left-s-line"></i>
+          </button>
 
-        <article class="t-card">
-            <div class="avatar circle">JS</div>
-            <h4>Julia Santos</h4>
-            <p class="role">Freelancer</p>
-            <p class="t-text">“Como freelancer, era um caos separar receitas e despesas. O FinControl tornou tudo leve e intuitivo.”</p>
-          </article>
+          <div class="t-window" aria-live="polite">
+            <div class="t-track">
+              <!-- Slide 1 -->
+              <article class="t-card">
+                <div class="avatar circle">JD</div>
+                <h4>João Dias</h4>
+                <p class="role">CEO, TechCorp</p>
+                <p class="t-text">“O FinControl revolucionou a forma como gerimos as finanças. Simples, poderoso e com ótimo suporte.”</p>
+              </article>
 
-          <article class="t-card">
-            <div class="avatar circle">MJ</div>
-            <h4>Marcos José</h4>
-            <p class="role">Pequeno Empreendedor</p>
-            <p class="t-text">“Os relatórios avançados mudaram o jogo. Agora decido com base em dados, não em achismos.”</p>
-          </article>
+              <!-- Slide 2 -->
+              <article class="t-card">
+                <div class="avatar circle">JS</div>
+                <h4>Julia Santos</h4>
+                <p class="role">Freelancer</p>
+                <p class="t-text">“Como freelancer, era um caos separar receitas e despesas. O FinControl tornou tudo leve e intuitivo.”</p>
+              </article>
+
+              <!-- Slide 3 -->
+              <article class="t-card">
+                <div class="avatar circle">MJ</div>
+                <h4>Marcos José</h4>
+                <p class="role">Pequeno Empreendedor</p>
+                <p class="t-text">“Os relatórios avançados mudaram o jogo. Agora decido com base em dados, não em achismos.”</p>
+              </article>
+
+              <!-- Slide 4 -->
+              <article class="t-card">
+                <div class="avatar circle">AP</div>
+                <h4>Ana Paula</h4>
+                <p class="role">Analista Financeira</p>
+                <p class="t-text">“Consigo enxergar rapidamente onde estou gastando demais e ajustar o mês em poucos minutos.”</p>
+              </article>
+
+              <!-- Slide 5 -->
+              <article class="t-card">
+                <div class="avatar circle">RL</div>
+                <h4>Rafael Lima</h4>
+                <p class="role">MEI</p>
+                <p class="t-text">“Uso para separar a grana da empresa da pessoal. O resumo mensal é perfeito para o contador.”</p>
+              </article>
+
+              <!-- Slide 6 -->
+              <article class="t-card">
+                <div class="avatar circle">CS</div>
+                <h4>Carla Souza</h4>
+                <p class="role">Professora</p>
+                <p class="t-text">“Depois que comecei a usar, finalmente consegui montar minha reserva de emergência.”</p>
+              </article>
+            </div>
+          </div>
+
+          <button class="t-arrow t-next" aria-label="Próximo depoimento">
+            <i class="ri-arrow-right-s-line"></i>
+          </button>
         </div>
+
+        <div class="t-dots" aria-label="Navegação dos depoimentos"></div>
       </div>
     </section>
   </main>
@@ -253,12 +295,6 @@
       </div>
     </div>
   </footer>
-
-  <!-- Botão flutuante -->
-  <a href="dashboard.html" class="fab" aria-label="Testar Demo">
-    <i class="ri-play-circle-line"></i>
-    <span>Testar Demo</span>
-  </a>
 
   <script src="app.js"></script>
 </body>
