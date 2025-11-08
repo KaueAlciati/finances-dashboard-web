@@ -1,80 +1,99 @@
-// ==========================
-//  MENU MOBILE (Hamburger)
-// ==========================
-const toggle = document.querySelector('.nav-toggle');
+// Menu mobile
+const navToggle = document.querySelector('.nav-toggle');
 const menu = document.querySelector('.menu');
 
-if (toggle) {
-  toggle.addEventListener('click', () => {
-    const expanded = toggle.getAttribute('aria-expanded') === 'true';
-    toggle.setAttribute('aria-expanded', String(!expanded));
-    menu.classList.toggle('show');
+if (navToggle && menu) {
+  navToggle.addEventListener('click', () => {
+    const isOpen = menu.classList.toggle('show');
+    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
   });
 
-  // fecha o menu se clicar fora dele
-  document.addEventListener('click', (e) => {
-    if (!menu.contains(e.target) && !toggle.contains(e.target)) {
-      menu.classList.remove('show');
-      toggle.setAttribute('aria-expanded', 'false');
-    }
-  });
-}
-
-// ==========================
-//  SCROLL SUAVE PARA ÂNCORAS
-// ==========================
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-  link.addEventListener('click', (e) => {
-    const targetId = link.getAttribute('href');
-    if (!targetId || targetId === '#') return;
-
-    const targetEl = document.querySelector(targetId);
-    if (!targetEl) return;
-
-    e.preventDefault();
-
-    // Fecha menu mobile se estiver aberto
-    if (menu) menu.classList.remove('show');
-
-    window.scrollTo({
-      top: targetEl.offsetTop - 60,
-      behavior: 'smooth'
+  // Fechar menu ao clicar em um link (mobile)
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (menu.classList.contains('show')) {
+        menu.classList.remove('show');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
     });
   });
-});
-
-// ==========================
-//  LINK ATIVO CONFORME ROLAGEM
-// ==========================
-const sectionIds = ['#inicio', '#beneficios', '#features', '#planos', '#contato'];
-const sections = sectionIds
-  .map(id => document.querySelector(id))
-  .filter(Boolean);
-
-const navLinks = document.querySelectorAll('.menu a[href^="#"]');
-
-function updateActiveLink() {
-  let current = '#inicio';
-  const scrollPos = window.scrollY + 100;
-
-  for (const section of sections) {
-    if (section.offsetTop <= scrollPos) current = `#${section.id}`;
-  }
-
-  navLinks.forEach(link => {
-    const isActive = link.getAttribute('href') === current;
-    link.classList.toggle('active', isActive);
-  });
 }
 
-window.addEventListener('scroll', updateActiveLink);
-updateActiveLink();
+// Carrossel de depoimentos
+(function initTestimonialsCarousel() {
+  const track = document.querySelector('.t-track');
+  const windowEl = document.querySelector('.t-window');
+  const prevBtn = document.querySelector('.t-prev');
+  const nextBtn = document.querySelector('.t-next');
+  const dotsContainer = document.querySelector('.t-dots');
 
-// ==========================
-//  SCROLL TO TOP (opcional futuro)
-// ==========================
-// const backToTop = document.querySelector('.back-to-top');
-// window.addEventListener('scroll', () => {
-//   if (window.scrollY > 300) backToTop?.classList.add('show');
-//   else backToTop?.classList.remove('show');
-// });
+  if (!track || !windowEl || !prevBtn || !nextBtn || !dotsContainer) return;
+
+  const cards = Array.from(track.querySelectorAll('.t-card'));
+  if (cards.length === 0) return;
+
+  let currentIndex = 0;
+
+  // cria dots
+  cards.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 't-dot' + (i === 0 ? ' active' : '');
+    dot.dataset.index = i;
+    dotsContainer.appendChild(dot);
+  });
+
+  const dots = Array.from(dotsContainer.querySelectorAll('.t-dot'));
+
+  function goTo(index) {
+    if (!cards[index]) return;
+    currentIndex = index;
+
+    const target = cards[index];
+    const offset = target.offsetLeft;
+
+    track.style.transform = `translateX(-${offset}px)`;
+
+    dots.forEach(d => d.classList.remove('active'));
+    const activeDot = dots.find(d => Number(d.dataset.index) === index);
+    activeDot && activeDot.classList.add('active');
+  }
+
+  function next() {
+    const nextIndex = (currentIndex + 1) % cards.length;
+    goTo(nextIndex);
+  }
+
+  function prev() {
+    const prevIndex = (currentIndex - 1 + cards.length) % cards.length;
+    goTo(prevIndex);
+  }
+
+  nextBtn.addEventListener('click', next);
+  prevBtn.addEventListener('click', prev);
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      goTo(Number(dot.dataset.index));
+    });
+  });
+
+  // auto-play suave
+  let auto = setInterval(next, 6000);
+
+  function resetAuto() {
+    clearInterval(auto);
+    auto = setInterval(next, 6000);
+  }
+
+  [nextBtn, prevBtn, ...dots].forEach(el => {
+    el.addEventListener('click', resetAuto);
+  });
+
+  window.addEventListener('resize', () => {
+    // recalcula posição no resize pra não quebrar
+    goTo(currentIndex);
+  });
+
+  // posição inicial
+  goTo(0);
+})();
