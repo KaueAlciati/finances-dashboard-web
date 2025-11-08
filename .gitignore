@@ -1,0 +1,8 @@
+# Node
+node_modules/
+
+# Bot config privado
+bot/bot.config.js
+
+# Dados locais do bot (se quiser manter só local)
+bot/transactions.json
