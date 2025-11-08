@@ -559,3 +559,98 @@ window.refreshAll = function () {
   refreshCharts();
   refreshNotifications();
 })();
+/* ======================================
+   Integração com Bot (transactions.json via server.js)
+   - Lê http://localhost:3001/transactions
+   - Converte e mescla com as transações locais
+====================================== */
+
+async function syncBotTransactions() {
+  try {
+    const res = await fetch('http://localhost:3001/transactions', { method: 'GET' });
+
+    if (!res.ok) {
+      console.warn('Bot API não respondeu, seguindo só com localStorage.');
+      return;
+    }
+
+    const raw = await res.json();
+
+    // --- Normaliza para um array de transações ---
+    let list = [];
+
+    if (Array.isArray(raw)) {
+      list = raw;
+    } else if (raw && typeof raw === 'object') {
+      // raw = { chatId: [tx, tx], outroChat: [tx, tx] }
+      Object.values(raw).forEach(val => {
+        if (Array.isArray(val)) list.push(...val);
+      });
+    }
+
+    if (!list.length) {
+      return;
+    }
+
+    // Transações já existentes no localStorage
+    const localTx = JSON.parse(localStorage.getItem(KEY_TX) || '[]');
+    const byId = new Map(localTx.map(t => [t.id, t]));
+
+    list.forEach((b) => {
+      // value vem certinho no seu JSON
+      let value = Number(b.value);
+      if (!value || isNaN(value)) return;
+
+      const baseDesc = (b.description || b.text || 'Lançado via bot').trim();
+
+      // tipo já vem "expense" no seu JSON, cai aqui; se mudar depois, ainda funciona
+      const rawType = (b.type || b.kind || '').toString().toLowerCase();
+      const type =
+        rawType.includes('income') || rawType.includes('receita')
+          ? 'income'
+          : 'expense';
+
+      const category = (b.category || 'outros').toString();
+
+      const id =
+        b.id ||
+        `bot-${b.chatId || 'x'}-${b.timestamp || ''}-${baseDesc}-${value}`;
+
+      if (byId.has(id)) return; // evita duplicar
+
+      const dateISO = (b.date || todayISO()).slice(0, 10);
+
+      const tx = {
+        id,
+        date: dateISO,
+        description: baseDesc,
+        category,
+        type,
+        value
+      };
+
+      byId.set(id, tx);
+    });
+
+    // Atualiza globais + localStorage
+    txs = Array.from(byId.values());
+    saveTx();
+
+    // Re-renderiza tudo
+    refreshCards();
+    refreshLast();
+    refreshCharts();
+    refreshNotifications();
+
+  } catch (err) {
+    console.error('Erro ao sincronizar transações do bot:', err);
+  }
+}
+
+// deixa acessível no console
+window.syncBotTransactions = syncBotTransactions;
+
+// roda automaticamente após init()
+(async function syncAfterInit() {
+  await syncBotTransactions();
+})();
