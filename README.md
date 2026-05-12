@@ -1,165 +1,191 @@
-# 💸 FinControl — Painel Financeiro Integrado com Telegram Bot
+# FinControl - Painel Financeiro Integrado com Telegram Bot
 
-> Sistema web completo para controle financeiro pessoal, com integração direta ao Telegram Bot para registro de transações via chat.  
-> Desenvolvido em **HTML, CSS e JavaScript** (frontend) + **Node.js** (bot e API local).
+Sistema web para controle financeiro pessoal, com dashboard interativo, cadastro de transações, metas, orçamentos, relatórios e integração local com um bot do Telegram.
 
----
+O projeto foi desenvolvido com **HTML, CSS e JavaScript** no frontend e **Node.js** para o bot/API local.
 
-## 🚀 **Visão Geral**
+## Visão Geral
 
-O **FinControl** permite gerenciar suas finanças de forma simples e automatizada.  
-Você pode registrar receitas e despesas diretamente pelo Telegram, e o dashboard web atualiza os dados em tempo real, exibindo saldo, gráficos e estatísticas mensais.
+O FinControl ajuda a organizar receitas e despesas em uma interface visual. O usuário pode cadastrar transações pelo dashboard ou registrar lançamentos pelo Telegram Bot, que salva os dados localmente para sincronização com o painel.
 
----
+## Funcionalidades
 
-## 🧩 **Funcionalidades Principais**
+### Dashboard Financeiro
 
-### 💬 Integração com Telegram Bot
-- Registrar transações pelo chat (ex: `mercado 50` ou `salário 2500`);
-- O bot salva automaticamente os dados em `transactions.json`;
-- O dashboard sincroniza e exibe as transações em tempo real.
+- Exibição de saldo atual, receitas, despesas e total de transações
+- Gráfico de evolução mensal
+- Gráfico de gastos por categoria com Chart.js
+- Lista das últimas transações
+- Notificações para acompanhamento de orçamentos
 
-### 📊 Dashboard Web
-- Visualização de **saldo atual**, **receitas**, **despesas** e **transações totais**;
-- Gráfico de **evolução mensal** e **gasto por categoria** (via Chart.js);
-- Tabelas com últimas transações e notificações inteligentes.
+### Transações
 
-### 🧾 Orçamentos, Metas e Relatórios
-- Controle de metas financeiras e limites de gastos;
-- Emissão de relatórios mensais;
-- Sistema de notificações de orçamentos.
+- Cadastro de receitas e despesas
+- Edição e exclusão de transações
+- Filtros por período, categoria e busca textual
+- Persistência no `localStorage`
 
-### 🧠 Preferências e Perfil
-- Personalização de tema (claro/escuro);
-- Alteração de moeda (BRL, USD, EUR);
-- Avatar e dados de perfil persistentes via `localStorage`.
+### Metas, Orçamentos e Relatórios
 
----
+- Cadastro e acompanhamento de metas financeiras
+- Controle de limites de gastos por categoria
+- Relatórios financeiros com visão consolidada
+- Preferências de tema, moeda e perfil
 
-## ⚙️ **Arquitetura do Projeto**
+### Integração com Telegram Bot
 
-finances-dashboard-web/
-│
-├── bot/ # Integração com Telegram
-│ ├── bot.js # Lógica principal do bot
-│ ├── bot.config.js # Configurações privadas (token do bot)
-│ ├── server.js # API local para leitura de transactions.json
-│ ├── package.json # Dependências do Node.js
-│ └── transactions.json # Armazena transações registradas via Telegram
-│
-├── img/ # Imagens e ícones do dashboard
-├── dashboard.html # Painel principal
-├── dashboard.js # Lógica do dashboard + integração do bot
-├── dashboard.css # Estilos do painel
-├── orcamentos.html / js / css
-├── metas.html / js / css
-├── relatorios.html / js / css
-├── login.html / js / css
-├── signup.html / js / css
-└── README.md
+- Registro de transações por mensagem no Telegram
+- Armazenamento local em `transactions.json`
+- API local para leitura das transações registradas pelo bot
+- Sincronização manual pelo dashboard via `syncBotTransactions()`
 
----
-
-## 🧠 **Tecnologias Utilizadas**
+## Tecnologias
 
 | Camada | Tecnologias |
-|--------|--------------|
-| Frontend | HTML5 · CSS3 · JavaScript (ES6+) · Chart.js |
-| Backend (Bot/API) | Node.js · Express · node-telegram-bot-api |
-| Armazenamento | JSON local (`transactions.json`) + LocalStorage |
-| Design System | Dark/Light Mode · Paleta customizável |
-| Ferramentas | VSCode · Git · Telegram API · npm scripts |
+| --- | --- |
+| Frontend | HTML5, CSS3, JavaScript, Chart.js |
+| Bot/API local | Node.js, Express, node-telegram-bot-api |
+| Persistência | LocalStorage e JSON local |
+| Deploy frontend | Vercel |
 
----
+## Estrutura do Projeto
 
-## 🧰 **Como Rodar o Projeto**
+```text
+finances-dashboard-web/
+├── bot/
+│   ├── bot.js
+│   ├── bot.config.example.js
+│   ├── server.js
+│   ├── package.json
+│   └── package-lock.json
+├── img/
+├── dashboard.html
+├── dashboard.css
+├── dashboard.js
+├── transacoes.html
+├── transacoes.css
+├── transacoes.js
+├── orcamentos.html
+├── orcamentos.css
+├── orcamentos.js
+├── metas.html
+├── metas.css
+├── metas.js
+├── relatorios.html
+├── relatorios.css
+├── relatorios.js
+├── login.html
+├── signup.html
+├── index.html
+└── README.md
+```
 
-### 🔹 1. Clonar o repositório
+## Como Rodar Localmente
 
+### 1. Clone o repositório
+
+```bash
 git clone https://github.com/KaueAlciati/finances-dashboard-web.git
 cd finances-dashboard-web
+```
 
-### 🔹 2. Instalar dependências do bot
+### 2. Instale as dependências do bot
 
+```bash
 cd bot
 npm install
+```
 
-### 🔹 3. Configurar o token do bot
+### 3. Configure o token do Telegram Bot
 
-Crie um arquivo bot.config.js dentro da pasta bot/ com o seguinte conteúdo:
+Crie um arquivo `bot.config.js` dentro da pasta `bot/`.
 
+Você pode usar o arquivo de exemplo como base:
+
+```bash
+cp bot.config.example.js bot.config.js
+```
+
+Depois edite o token:
+
+```js
 module.exports = {
-  TOKEN: 'seu-token-do-telegram-bot'
+  TOKEN: "seu-token-do-telegram-bot",
 };
+```
 
-### 🔹 4. Executar os serviços
+### 4. Execute o bot e a API local
 
-Em dois terminais separados, rode:
+Em um terminal dentro da pasta `bot/`:
 
+```bash
 npm run start:bot
+```
+
+Em outro terminal dentro da pasta `bot/`:
+
+```bash
 npm run start:api
+```
 
-### 🔹 5. Iniciar o Dashboard
+A API local ficará disponível em:
 
-Abra o arquivo:
-/finances-dashboard-web/dashboard.html
-ou execute via Live Server (VSCode):
-http://127.0.0.1:5500/finances-dashboard-web/dashboard.html
-O dashboard buscará as transações no endpoint:
+```text
 http://localhost:3001/transactions
+```
 
----
+### 5. Abra o dashboard
 
-## 💡 **Exemplo de Uso no Telegram**
+Abra o arquivo `dashboard.html` no navegador ou use uma extensão como Live Server no VS Code.
 
-## 📱 Mensagem no bot
+Exemplo:
 
+```text
+http://127.0.0.1:5500/finances-dashboard-web/dashboard.html
+```
+
+## Exemplo de Uso no Telegram
+
+Mensagens aceitas pelo bot:
+
+```text
 mercado 50
 salario 2500
 ifood 15
+```
 
-📊 Resultado no painel:
-    Saldo atualizado automaticamente
-    Gráficos e totais recalculados
-    Transação listada como despesa ou receita conforme o texto
+Após o registro, o dashboard pode sincronizar os dados e atualizar saldo, gráficos e lista de transações.
 
----
+## Arquivos Ignorados
 
-## 🔒 **.gitignore**
+O projeto ignora dependências, configurações privadas e dados locais:
 
-O projeto ignora dados sensíveis e dependências:
+```text
 node_modules/
 bot/bot.config.js
 bot/transactions.json
+```
 
----
+## Roadmap Sugerido
 
-## 🧠 **Comandos Úteis**
+- Melhorar responsividade mobile
+- Padronizar textos e terminologia financeira
+- Exportar relatórios em CSV
+- Exportar relatórios em PDF
+- Melhorar validações de formulários
+- Adicionar estados vazios mais informativos
+- Revisar acessibilidade dos formulários e botões
 
-| Comando                                  | Descrição                                            |
-| ---------------------------------------- | ---------------------------------------------------- |
-| `npm run start:bot`                      | Inicia o bot do Telegram                             |
-| `npm run start:api`                      | Inicia o servidor local (porta 3001)                 |
-| `syncBotTransactions()`                  | Força a sincronização manual no console do dashboard |
-| `git add .` / `git commit -m "mensagem"` | Versionamento e upload pro GitHub                    |
-
----
-
-## 🧑‍💻 **Autor**
+## Autor
 
 Kauê Alciati
-📍 Desenvolvedor Full Stack · Estudante de ADS
-📎 GitHub: @KaueAlciati
 
----
+GitHub: [@KaueAlciati](https://github.com/KaueAlciati)
 
-## 🏁 **Licença**
+## Licença
 
-Este projeto é de uso educacional e pessoal, podendo ser adaptado livremente mediante atribuição de autoria.
+Este projeto está sob licença MIT. Consulte o arquivo [LICENSE](LICENSE) para mais detalhes.
 
----
+## Status
 
-## ✨ **Status do Projeto**
-
-🟢 Versão atual: Integração completa entre Dashboard e Bot (v1.0)
-📅 Última atualização: Novembro/2025
+Projeto em desenvolvimento.
